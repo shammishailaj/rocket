@@ -36,8 +36,5 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 .env
-vendor/
 dist/
 flint
-testdata/**/.rocket.*
-testdata/**/*.tar.gz

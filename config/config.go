@@ -19,10 +19,17 @@ type Config struct {
 
 	// providers
 	Script *ScriptConfig `json:"script,omitempty" toml:"script,omitempty"`
+	Heroku *HerokuConfig `json:"heroku,omitempty" toml:"heroku,omitempty"`
 }
 
 // ScriptConfig is the configration for the script provider
 type ScriptConfig []string
+
+type HerokuConfig struct {
+	APIKey    *string `json:"api_key" toml:"api_key"`
+	App       *string `json:"app" toml:"app"`
+	Directory *string `json:"directory" toml:"directory"`
+}
 
 func parseConfig(configFilePath string) (Config, error) {
 	var ret Config

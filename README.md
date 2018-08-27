@@ -48,7 +48,7 @@ $ rocket # to deploy
 | Custom script `script` | :heavy_check_mark: |
 | [Google Firebase](https://firebase.google.com) `firebase` | :clock1: |
 | [Google Cloud Storage](https://cloud.google.com/storage) `gcs` | :clock1: |
-| [GitHub releases](https://help.github.com/categories/releases) `github_releases` | :heavy_check_mark: |
+| [GitHub releases](https://help.github.com/categories/releases) `github_releases` | :clock1: |
 | [Heroku](https://www.heroku.com) `heroku` | :heavy_check_mark: |
 | [NPM](https://www.npmjs.com) `npm` | :clock1: |
 
