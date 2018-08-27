@@ -1,7 +1,8 @@
 package script
 
 import (
-	"fmt"
+	"io"
+	"os"
 	"os/exec"
 
 	"github.com/astrocorp42/rocket/config"
@@ -13,12 +14,34 @@ func Deploy(conf config.Config) error {
 		return nil
 	}
 
-	for _, cmd := range *conf.Script {
-		out, err := exec.Command("sh", "-c", cmd).Output()
+	for _, script := range *conf.Script {
+		var err error
+		cmd := exec.Command("sh", "-c", script)
+
+		stdout, err := cmd.StdoutPipe()
 		if err != nil {
 			return err
 		}
-		fmt.Print(string(out))
+		stderr, err := cmd.StdoutPipe()
+		if err != nil {
+			return err
+		}
+
+		go func() {
+			io.Copy(os.Stdout, stdout)
+		}()
+		go func() {
+			io.Copy(os.Stderr, stderr)
+		}()
+
+		err = cmd.Start()
+		if err != nil {
+			return err
+		}
+		err = cmd.Wait()
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil
