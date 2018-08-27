@@ -1,0 +1,38 @@
+# This is a weird way of telling Travis to use the fast container-based test
+# runner instead of the slow VM-based runner.
+sudo: false
+
+language: go
+
+env:
+  - GO111MODULE=on
+
+go:
+  - 1.11
+
+git:
+  depth: false
+  submodules: false
+
+before_script:
+  - go get
+  - make test
+
+script:
+  - make all
+
+deploy:
+  provider: releases
+  skip_cleanup: true # Important, otherwise the build output would be purged.
+  api_key: $GITHUB_TOKEN
+  file_glob: true
+  file:
+    - dist/sha512sums.txt
+    - dist/*.zip
+  on:
+    repo: astrocorp42/rocket
+    tags: true # The deployment happens only if the commit has a tag
+
+notifications:
+  email:
+    on_success: never # default: change

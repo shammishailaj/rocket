@@ -5,6 +5,7 @@ github.com/astrocorp42/flint v1.4.3/go.mod h1:KeP4hhf1cHhFi+kO3FvBWvzOhH93vCtncQ
 github.com/astroflow/astroflow-go v0.6.3 h1:2Ktir0t70fztyrsRdFI9XhYZ7hCZ0WKfnZzIDYIJCjU=
 github.com/astroflow/astroflow-go v0.6.3/go.mod h1:7PmVvGgceHIVfELKf1xedydu9FKJ4DCITr5Rf3kmxCE=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/inconshreveable/mousetrap v1.0.0 h1:Z8tu5sraLXCXIcARxBp/8cbvlwVa7Z1NHg9XEKhtSvM=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/json-iterator/go v0.0.0-20180701071628-ab8a2e0c74be h1:AHimNtVIpiBjPUhEF5KNCkrUyqTSA5zWUl8sQ2bfGBE=
 github.com/json-iterator/go v0.0.0-20180701071628-ab8a2e0c74be/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCVDaaPEHmU=
