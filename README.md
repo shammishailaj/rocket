@@ -6,10 +6,25 @@
 
 Deploy software as fast and easily as possible
 
-1. [Available providers](#available-providers)
-2. [Roadmap](#roadmap)
+1. [Installation](#installation)
+2. [Available providers](#available-providers)
+3. [Roadmap](#roadmap)
 
 -------------------
+
+
+## Installation
+
+### Using go (nightly)
+```bash
+$ go get -u github.com/astrocorp42/rocket
+```
+
+### Binary releases
+[https://github.com/astrocorp42/rocket/releases/latest](https://github.com/astrocorp42/rocket/releases/latest)
+
+
+
 
 ## Available providers
 
@@ -19,7 +34,7 @@ Deploy software as fast and easily as possible
 | Custom script | :heavy_check_mark: |
 | [Google Firebase](https://firebase.google.com) | :clock1: |
 | [Google Cloud Storage](https://cloud.google.com/storage) | :clock1: |
-| [GitHub releases](https://help.github.com/categories/releases) | :clock1: |
+| [GitHub releases](https://help.github.com/categories/releases) | :heavy_check_mark: |
 | [Heroku](https://www.heroku.com) | :heavy_check_mark: |
 | [NPM](https://www.npmjs.com) | :clock1: |
 
