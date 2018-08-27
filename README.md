@@ -15,7 +15,7 @@ Deploy software as fast and easily as possible
 
 | Provider              | Status |
 | --------------------- | -------|
-| GitHub releases | 🕐|
+| <a href="https://help.github.com/categories/releases" target="_blank" rel="noopener noreferrer">GitHub releases</a> |🕐|
 | Heroku |✔️|
 
 
