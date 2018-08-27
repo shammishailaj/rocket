@@ -27,7 +27,7 @@ var InitCmd = &cobra.Command{
 	Short: fmt.Sprintf("Init rocket by creating a %s.(toml|json) configuration file", config.DefaultConfigurationFileName),
 	Long:  fmt.Sprintf("Init rocket by creating a %s.(toml|json) configuration file", config.DefaultConfigurationFileName),
 	Run: func(cmd *cobra.Command, args []string) {
-		configFile := config.FindConfigFile()
+		configFile := config.FindConfigFile("")
 		var err error
 
 		if configFile != "" && initForce == false {

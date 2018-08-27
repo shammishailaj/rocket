@@ -40,7 +40,7 @@ func parseConfig(configFilePath string) (Config, error) {
 	case ".json":
 		err = json.Unmarshal(file, &ret)
 	default:
-		err = errors.New(ext + " is not a configuration file extension")
+		err = errors.New(ext + " is not a valid configuration file extension")
 	}
 	if err != nil {
 		return ret, err
@@ -68,7 +68,14 @@ func Default() Config {
 
 // FindConfigFile return the path of the first configuration file found
 // it returns an emtpy string if none is found
-func FindConfigFile() string {
+func FindConfigFile(file string) string {
+	if file != "" {
+		if fileExists(file) {
+			return file
+		}
+		return ""
+	}
+
 	tomlFile := DefaultConfigurationFileName + ".toml"
 	jsonFile := DefaultConfigurationFileName + ".json"
 
@@ -82,14 +89,17 @@ func FindConfigFile() string {
 }
 
 // Get return the parsed found configuration file or an error
-func Get() (Config, error) {
+func Get(file string) (Config, error) {
 	var err error
 	var config Config
 
-	configFilePath := FindConfigFile()
+	configFilePath := FindConfigFile(file)
 
 	if configFilePath == "" {
-		return config, fmt.Errorf("%s(.toml|json) configuraiton file not found in the current directory. Please run \"rocket init\"", DefaultConfigurationFileName)
+		if file == "" {
+			return config, fmt.Errorf("%s(.toml|json) configuration file not found. Please run \"rocket init\"", DefaultConfigurationFileName)
+		}
+		return config, fmt.Errorf("%s file not found.", file)
 	}
 
 	config, err = parseConfig(configFilePath)
