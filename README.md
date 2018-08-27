@@ -7,8 +7,9 @@
 Deploy software as fast and easily as possible
 
 1. [Installation](#installation)
-2. [Available providers](#available-providers)
-3. [Roadmap](#roadmap)
+2. [Usage](#usage)
+3. [Available providers](#available-providers)
+4. [Roadmap](#roadmap)
 
 -------------------
 
@@ -22,6 +23,20 @@ $ go get -u github.com/astrocorp42/rocket
 
 ### Binary releases
 [https://github.com/astrocorp42/rocket/releases/latest](https://github.com/astrocorp42/rocket/releases/latest)
+
+
+
+
+## Usage
+
+Go to your project's root directory then
+```bash
+$ rocket init # create a configuration .rocket.(toml|json) file with default configuration
+# edit the file with the desired configuration, then
+$ rocket # to deploy
+```
+
+
 
 
 
