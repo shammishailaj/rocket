@@ -18,8 +18,9 @@ type Config struct {
 	Description string `json:"description" toml:"description"`
 
 	// providers
-	Script *ScriptConfig `json:"script,omitempty" toml:"script,omitempty"`
-	Heroku *HerokuConfig `json:"heroku,omitempty" toml:"heroku,omitempty"`
+	Script               *ScriptConfig         `json:"script,omitempty" toml:"script,omitempty"`
+	Heroku               *HerokuConfig         `json:"heroku,omitempty" toml:"heroku,omitempty"`
+	GithubReleasesConfig *GithubReleasesConfig `json:"github_releases,omitempty" toml:"github_releases,omitempty"`
 }
 
 // ScriptConfig is the configration for the script provider
@@ -29,6 +30,9 @@ type HerokuConfig struct {
 	APIKey    *string `json:"api_key" toml:"api_key"`
 	App       *string `json:"app" toml:"app"`
 	Directory *string `json:"directory" toml:"directory"`
+}
+
+type GithubReleasesConfig struct {
 }
 
 func parseConfig(configFilePath string) (Config, error) {
