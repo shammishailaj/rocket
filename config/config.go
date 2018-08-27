@@ -33,6 +33,9 @@ type HerokuConfig struct {
 }
 
 type GithubReleasesConfig struct {
+	Name       *string `json:"name" toml:"name"`
+	Body       *string `json:"body" toml:"body"`
+	Prerelease *bool   `json:"prerelease" toml:"prerelease"`
 }
 
 func parseConfig(configFilePath string) (Config, error) {
