@@ -44,13 +44,13 @@ $ rocket # to deploy
 
 | Provider              | Status |
 | --------------------- | -------|
-| [AWS S3](https://aws.amazon.com/s3) | :clock1: |
-| Custom script | :heavy_check_mark: |
-| [Google Firebase](https://firebase.google.com) | :clock1: |
-| [Google Cloud Storage](https://cloud.google.com/storage) | :clock1: |
-| [GitHub releases](https://help.github.com/categories/releases) | :heavy_check_mark: |
-| [Heroku](https://www.heroku.com) | :heavy_check_mark: |
-| [NPM](https://www.npmjs.com) | :clock1: |
+| [AWS S3](https://aws.amazon.com/s3) (`s3`) | :clock1: |
+| Custom script (`script`) | :heavy_check_mark: |
+| [Google Firebase](https://firebase.google.com) (`firebase`) | :clock1: |
+| [Google Cloud Storage](https://cloud.google.com/storage) (`gcs`) | :clock1: |
+| [GitHub releases](https://help.github.com/categories/releases) (`github_releases`) | :heavy_check_mark: |
+| [Heroku](https://www.heroku.com) (`heroku`) | :heavy_check_mark: |
+| [NPM](https://www.npmjs.com) (`npm`) | :clock1: |
 
 
 
