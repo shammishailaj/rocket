@@ -1,0 +1,17 @@
+description = "This is a configuration file for flint, the filesystem linter. More information here: https://github.com/astrocorp42/flint"
+default_severity = "warning"
+error_exit_code = 1
+warning_exit_code = 0
+match_format = "blob"
+ignore_files = [".*", "LICENSE*", "README*", "Gopkg.toml", "Gopkg.lock", "package.json", "Dockerfile", "Makefile", "package-lock.json"]
+ignore_directories = [".*"]
+
+[rules]
+  [rules."dir/no_dot"]
+  [rules."file/lower_case_ext"]
+  [rules."file/no_multi_ext"]
+  [rules.no_empty_name]
+  [rules.no_leading_underscores]
+  [rules.no_trailing_underscores]
+  [rules.no_whitespaces]
+  [rules.snake_case]
