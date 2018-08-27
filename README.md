@@ -15,13 +15,13 @@ Deploy software as fast and easily as possible
 
 | Provider              | Status |
 | --------------------- | -------|
-| [AWS S3](https://aws.amazon.com/s3) |🕐|
-| Custom script |✔️|
-| [Google Firebase](https://firebase.google.com) |🕐|
-| [Google Cloud Storage](https://cloud.google.com/storage) |🕐|
-| [GitHub releases](https://help.github.com/categories/releases) |🕐|
-| [Heroku](https://www.heroku.com) |✔️|
-| [NPM](https://www.npmjs.com) |🕐|
+| [AWS S3](https://aws.amazon.com/s3) | :clock1: |
+| Custom script | :heavy_check_mark: |
+| [Google Firebase](https://firebase.google.com) | :clock1: |
+| [Google Cloud Storage](https://cloud.google.com/storage) | :clock1: |
+| [GitHub releases](https://help.github.com/categories/releases) | :clock1: |
+| [Heroku](https://www.heroku.com) | :heavy_check_mark: |
+| [NPM](https://www.npmjs.com) | :clock1: |
 
 
 
