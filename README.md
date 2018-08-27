@@ -16,7 +16,7 @@ Deploy software as fast and easily as possible
 | Provider              | Status |
 | --------------------- | -------|
 | GitHub releases | 🕐|
-| Heroku |✅|
+| Heroku |✔️|
 
 
 
