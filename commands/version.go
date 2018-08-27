@@ -1,4 +1,4 @@
-package command
+package commands
 
 import (
 	"encoding/json"
@@ -18,14 +18,14 @@ type versionJSON struct {
 	GoVersion    string `json:"go_version"`
 }
 
-func init() {
-	RocketCmd.AddCommand(versionCmd)
-	versionCmd.PersistentFlags().StringVarP(&versionFormat, "format", "f", "console", "Output format. Valid values are [console, json]")
-}
-
 var versionFormat string
 
-var versionCmd = &cobra.Command{
+func init() {
+	RocketCmd.AddCommand(VersionCmd)
+	VersionCmd.Flags().StringVarP(&versionFormat, "format", "f", "console", "Output format. Valid values are [console, json]")
+}
+
+var VersionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Display the version and build information",
 	Long:  "Display the version and build information",

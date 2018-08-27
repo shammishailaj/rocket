@@ -1,6 +1,7 @@
 module github.com/astrocorp42/rocket
 
 require (
+	github.com/BurntSushi/toml v0.3.0
 	github.com/astrocorp42/flint v1.4.3
 	github.com/astroflow/astroflow-go v0.6.3
 	github.com/json-iterator/go v1.1.5 // indirect
