@@ -15,8 +15,12 @@ Deploy software as fast and easily as possible
 
 | Provider              | Status |
 | --------------------- | -------|
+| [AWS S3](https://aws.amazon.com/s3) |🕐|
+| [Google Firebase](https://firebase.google.com) |🕐|
+| [Google Cloud Storage](https://cloud.google.com/storage) |🕐|
 | [GitHub releases](https://help.github.com/categories/releases) |🕐|
 | [Heroku](https://www.heroku.com) |✔️|
+| [NPM](https://www.npmjs.com) |🕐|
 
 
 
