@@ -22,7 +22,7 @@ func Deploy(conf config.Config) error {
 		if err != nil {
 			return err
 		}
-		stderr, err := cmd.StdoutPipe()
+		stderr, err := cmd.StderrPipe()
 		if err != nil {
 			return err
 		}

@@ -40,6 +40,11 @@ var RocketCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		script.Deploy(conf)
+		fmt.Printf("%#v\n", conf.Script)
+		err = script.Deploy(conf)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
 	},
 }
