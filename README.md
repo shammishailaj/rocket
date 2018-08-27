@@ -25,7 +25,6 @@ $ go get -u github.com/astrocorp42/rocket
 
 
 
-
 ## Available providers
 
 | Provider              | Status |
