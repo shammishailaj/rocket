@@ -21,10 +21,11 @@ func init() {
 	InitCmd.Flags().BoolVar(&initForce, "force", false, fmt.Sprintf("Force and override an existing %s.(toml|json) file", config.DefaultConfigurationFileName))
 }
 
+// InitCmd is the rocket's `init` command. It creates a configuration with default configuration
 var InitCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Init rocket by creating a .rocket.(toml|json) configuration file",
-	Long:  "Init rocket by creating a .rocket.(toml|json) configuration file",
+	Short: fmt.Sprintf("Init rocket by creating a %s.(toml|json) configuration file", config.DefaultConfigurationFileName),
+	Long:  fmt.Sprintf("Init rocket by creating a %s.(toml|json) configuration file", config.DefaultConfigurationFileName),
 	Run: func(cmd *cobra.Command, args []string) {
 		configFile := config.FindConfigFile()
 		var err error

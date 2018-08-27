@@ -25,6 +25,7 @@ func init() {
 	VersionCmd.Flags().StringVarP(&versionFormat, "format", "f", "console", "Output format. Valid values are [console, json]")
 }
 
+// Version is the rocket's `version` command. It display various information about the current rocket executable
 var VersionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Display the version and build information",
