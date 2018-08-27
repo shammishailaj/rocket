@@ -50,6 +50,7 @@ $ rocket # to deploy
 | [Google Cloud Storage](https://cloud.google.com/storage) `gcs` | :clock1: |
 | [GitHub releases](https://help.github.com/categories/releases) `github_releases` | :heavy_check_mark: |
 | [Heroku](https://www.heroku.com) `heroku` | :heavy_check_mark: |
+| [Netlify](https://www.netlify.com) `netlify` | :clock1: |
 | [NPM](https://www.npmjs.com) `npm` | :clock1: |
 
 
