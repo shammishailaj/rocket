@@ -49,6 +49,7 @@ var RocketCmd = &cobra.Command{
 		}
 
 		log.With("configuration", conf).Debug("")
+		log.With("env", os.Environ()).Debug("")
 
 		// script
 		if conf.Script != nil {

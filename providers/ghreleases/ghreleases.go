@@ -30,28 +30,31 @@ type GitHubRepo struct {
 // publish the release (draft = false)
 func Deploy(conf config.GitHubReleasesConfig) error {
 	if conf.Name == nil {
-		return errors.New("github_releases.name is missing")
+		v := os.Getenv("ROCKET_LAST_TAG")
+		conf.Name = &v
 	}
 	if conf.Body == nil {
-		return errors.New("github_releases.body is missing")
+		v := ""
+		conf.Body = &v
 	}
 	if conf.Prerelease == nil {
-		return errors.New("github_releases.prerelease is missing")
+		v := false
+		conf.Prerelease = &v
 	}
 	if conf.Repo == nil {
-		return errors.New("github_releases.repo is missing")
+		v := os.Getenv("ROCKET_GIT_REPO")
+		conf.Repo = &v
 	}
-	if conf.Token == nil {
-		return errors.New("github_releases.token is missing")
+	if conf.APIKey == nil {
+		v := os.Getenv("GITHUB_API_KEY")
+		conf.APIKey = &v
 	}
-	/*tag, err := exec.Command("sh", "-c", "git describe --tags --abbrev=0").CombinedOutput()
-	if err != nil {
-		return err
+	if conf.Tag == nil {
+		v := os.Getenv("ROCKET_LAST_TAG")
+		conf.Tag = &v
 	}
-	*/
-	tag := "v0.2.0"
 	repo, _ := parseRepo(*conf.Repo)
-	client, err := NewClient(*conf.Token)
+	client, err := NewClient(*conf.APIKey)
 	if err != nil {
 		return err
 	}
@@ -68,7 +71,7 @@ func Deploy(conf config.GitHubReleasesConfig) error {
 	releaseID, err := client.CreateDraftRelease(
 		repo,
 		*conf.Name,
-		strings.TrimSpace(string(tag)),
+		strings.TrimSpace(*conf.Tag),
 		*conf.Body,
 		*conf.Prerelease,
 	)

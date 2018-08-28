@@ -31,7 +31,7 @@ $ go get -u github.com/astrocorp42/rocket
 
 Go to your project's root directory then
 ```bash
-$ rocket init # create a configuration .rocket.(toml|json) file with default configuration
+$ rocket init # create a configuration .rocket.toml file with default configuration
 # edit the file with the desired configuration, then
 $ rocket # to deploy
 ```

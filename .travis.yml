@@ -17,18 +17,15 @@ git:
 before_script:
   - go get
   - make test
+  - make
 
 script:
   - make all
 
 deploy:
-  provider: releases
+  provider: script
   skip_cleanup: true # Important, otherwise the build output would be purged.
-  api_key: $GITHUB_TOKEN
-  file_glob: true
-  file:
-    - dist/sha512sums.txt
-    - dist/*.zip
+  script: dist/rocket # use rocket to deploy itself :)
   on:
     repo: astrocorp42/rocket
     tags: true # The deployment happens only if the commit has a tag

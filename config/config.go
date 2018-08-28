@@ -1,21 +1,27 @@
 package config
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
-	"path/filepath"
+	"os/exec"
+	"strings"
 
 	"github.com/BurntSushi/toml"
 )
 
 // DefaultConfigurationFileName is the default configuration file name, without extension
-const DefaultConfigurationFileName = ".rocket"
+const DefaultConfigurationFileName = ".rocket.toml"
+
+var PredefinedVariables = []string{
+	"ROCKET_COMMIT_HASH",
+	"ROCKET_LAST_TAG",
+	"ROCKET_GIT_REPO",
+}
 
 type Config struct {
-	Description string `json:"description" toml:"description"`
+	Description string            `json:"description" toml:"description"`
+	Variables   map[string]string `json:"variables" toml:"variables"`
 
 	// providers
 	Script         ScriptConfig          `json:"script,omitempty" toml:"script,omitempty"`
@@ -37,13 +43,19 @@ type GitHubReleasesConfig struct {
 	Body       *string  `json:"body" toml:"body"`
 	Prerelease *bool    `json:"prerelease" toml:"prerelease"`
 	Repo       *string  `json:"repo" toml:"repo"`
-	Token      *string  `json:"token" toml:"token"`
+	APIKey     *string  `json:"api_key" toml:"api_key"`
 	Assets     []string `json:"assets" toml:"assets"`
+	Tag        *string  `json:"tag" toml:"tag"`
+}
+
+// ExpandEnv 'fix' os.ExpandEnv by allowing to use $$ to escape a dollar e.g: $$HOME -> $HOME
+func ExpandEnv(s string) string {
+	os.Setenv("ROCKET_DOLLAR", "$")
+	return os.ExpandEnv(strings.Replace(s, "$$", "${ROCKET_DOLLAR}", -1))
 }
 
 func parseConfig(configFilePath string) (Config, error) {
 	var ret Config
-	ext := filepath.Ext(configFilePath)
 	var err error
 
 	file, err := ioutil.ReadFile(configFilePath)
@@ -51,19 +63,9 @@ func parseConfig(configFilePath string) (Config, error) {
 		return ret, err
 	}
 
-	switch ext {
-	case ".toml":
-		_, err = toml.Decode(string(file), &ret)
-	case ".json":
-		err = json.Unmarshal(file, &ret)
-	default:
-		err = errors.New(ext + " is not a valid configuration file extension")
-	}
-	if err != nil {
-		return ret, err
-	}
+	_, err = toml.Decode(string(file), &ret)
 
-	return ret, nil
+	return ret, err
 }
 
 func fileExists(path string) bool {
@@ -93,13 +95,8 @@ func FindConfigFile(file string) string {
 		return ""
 	}
 
-	tomlFile := DefaultConfigurationFileName + ".toml"
-	jsonFile := DefaultConfigurationFileName + ".json"
-
-	if fileExists(tomlFile) {
-		return tomlFile
-	} else if fileExists(jsonFile) {
-		return jsonFile
+	if fileExists(DefaultConfigurationFileName) {
+		return DefaultConfigurationFileName
 	}
 
 	return ""
@@ -114,7 +111,7 @@ func Get(file string) (Config, error) {
 
 	if configFilePath == "" {
 		if file == "" {
-			return config, fmt.Errorf("%s(.toml|json) configuration file not found. Please run \"rocket init\"", DefaultConfigurationFileName)
+			return config, fmt.Errorf("%s configuration file not found. Please run \"rocket init\"", DefaultConfigurationFileName)
 		}
 		return config, fmt.Errorf("%s file not found.", file)
 	}
@@ -124,5 +121,84 @@ func Get(file string) (Config, error) {
 		return config, err
 	}
 
+	err = setEnv()
+	if err != nil {
+		return config, err
+	}
+
+	err = parseVariables(config)
+	if err != nil {
+		return config, err
+	}
+
 	return config, err
+}
+
+// set the default env variables
+// it does not overwrite the already existing
+func setEnv() error {
+	if os.Getenv("ROCKET_COMMIT_HASH") == "" {
+		out, err := exec.Command("git", "rev-parse", "HEAD").Output()
+		if err != nil {
+			return err
+		}
+		err = os.Setenv("ROCKET_COMMIT_HASH", strings.TrimSpace(string(out)))
+		if err != nil {
+			return err
+		}
+	}
+
+	if os.Getenv("ROCKET_LAST_TAG") == "" {
+		out, err := exec.Command("git", "describe", "--tags", "--abbrev=0").Output()
+		if err != nil {
+			return err
+		}
+		err = os.Setenv("ROCKET_LAST_TAG", strings.TrimSpace(string(out)))
+		if err != nil {
+			return err
+		}
+	}
+
+	if os.Getenv("ROCKET_GIT_REPO") == "" {
+		out, err := exec.Command("git", "config", "--get", "remote.origin.url").Output()
+		if err != nil {
+			return err
+		}
+		parts := strings.Split(strings.TrimSpace(string(out)), ":")
+		repo := parts[len(parts)-1]
+		err = os.Setenv("ROCKET_GIT_REPO", strings.Replace(repo, ".git", "", -1))
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func isPredefined(key string) bool {
+	for _, v := range PredefinedVariables {
+		if v == key {
+			return true
+		}
+	}
+
+	return false
+}
+
+// parseVariables parse the 'variables' field of the configuration, expand them and set them as env
+func parseVariables(conf Config) error {
+	if conf.Variables != nil {
+		for key, value := range conf.Variables {
+			var err error
+			key = strings.ToUpper(key)
+			if os.Getenv(key) == "" || isPredefined(key) {
+				err = os.Setenv(key, ExpandEnv(value))
+				if err != nil {
+					return err
+				}
+			}
+		}
+	}
+
+	return nil
 }
