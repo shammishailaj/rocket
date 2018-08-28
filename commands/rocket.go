@@ -17,7 +17,7 @@ var rocketConfigPath string
 var debug bool
 
 func init() {
-	RocketCmd.PersistentFlags().BoolVar(&debug, "debug", false, "Display debug information")
+	RocketCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "Display debug information")
 	RocketCmd.Flags().StringVarP(&rocketConfigPath, "config", "c", "", "Use the specified configuration file (and set it's directory as the working directory")
 }
 

@@ -53,6 +53,9 @@ func Deploy(conf config.GitHubReleasesConfig) error {
 		v := os.Getenv("ROCKET_LAST_TAG")
 		conf.Tag = &v
 	}
+	if conf.Assets == nil {
+		conf.Assets = []string{}
+	}
 	repo, _ := parseRepo(*conf.Repo)
 	client, err := NewClient(*conf.APIKey)
 	if err != nil {
