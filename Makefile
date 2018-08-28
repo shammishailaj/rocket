@@ -1,4 +1,4 @@
-.PHONY: rocket install clean re dir re_all all test release
+.PHONY: rocket install clean re dir re_all all test release docs
 .PHONY: darwin_386 darwin_amd64
 .PHONY: linux_arm6 linux_arm7 linux_arm64 linux_386 linux_amd64 linux_mips linux_mips64
 .PHONY: windows_386 windows_amd64
@@ -63,6 +63,9 @@ all: darwin_386 darwin_amd64 linux_arm6 linux_arm7 linux_arm64 linux_386 linux_a
 release: clean
 	git tag v$(VERSION)
 	git push origin v$(VERSION)
+
+docs:
+	cd _docs && mkdocs build
 
 darwin_386:
 	$(call build_for_os_arch,darwin,386,)

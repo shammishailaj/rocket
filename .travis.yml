@@ -25,7 +25,7 @@ script:
 deploy:
   provider: script
   skip_cleanup: true # Important, otherwise the build output would be purged.
-  script: dist/rocket --debug # use rocket to deploy itself :)
+  script: dist/rocket # use rocket to deploy itself :)
   on:
     repo: astrocorp42/rocket
     tags: true # The deployment happens only if the commit has a tag

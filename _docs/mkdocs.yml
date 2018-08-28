@@ -1,5 +1,6 @@
 site_name: Rocket
 site_url: https://astrocorp.net
+repo_url: https://github.com/astrocorp42/rocket
 
 theme:
   name: 'material'
