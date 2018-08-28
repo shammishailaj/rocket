@@ -11,12 +11,8 @@ import (
 )
 
 // Deploy deploy the script part of the configuration
-func Deploy(conf config.Config) error {
-	if conf.Script == nil || *conf.Script == nil {
-		return nil
-	}
-
-	for _, script := range *conf.Script {
+func Deploy(conf config.ScriptConfig) error {
+	for _, script := range conf {
 		var err error
 		cmd := exec.Command("sh", "-c", script)
 

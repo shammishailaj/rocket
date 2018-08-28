@@ -18,9 +18,9 @@ type Config struct {
 	Description string `json:"description" toml:"description"`
 
 	// providers
-	Script               *ScriptConfig         `json:"script,omitempty" toml:"script,omitempty"`
-	Heroku               *HerokuConfig         `json:"heroku,omitempty" toml:"heroku,omitempty"`
-	GithubReleasesConfig *GithubReleasesConfig `json:"github_releases,omitempty" toml:"github_releases,omitempty"`
+	Script         ScriptConfig          `json:"script,omitempty" toml:"script,omitempty"`
+	Heroku         *HerokuConfig         `json:"heroku,omitempty" toml:"heroku,omitempty"`
+	GitHubReleases *GitHubReleasesConfig `json:"github_releases,omitempty" toml:"github_releases,omitempty"`
 }
 
 // ScriptConfig is the configration for the script provider
@@ -32,10 +32,13 @@ type HerokuConfig struct {
 	Directory *string `json:"directory" toml:"directory"`
 }
 
-type GithubReleasesConfig struct {
-	Name       *string `json:"name" toml:"name"`
-	Body       *string `json:"body" toml:"body"`
-	Prerelease *bool   `json:"prerelease" toml:"prerelease"`
+type GitHubReleasesConfig struct {
+	Name       *string  `json:"name" toml:"name"`
+	Body       *string  `json:"body" toml:"body"`
+	Prerelease *bool    `json:"prerelease" toml:"prerelease"`
+	Repo       *string  `json:"repo" toml:"repo"`
+	Token      *string  `json:"token" toml:"token"`
+	Assets     []string `json:"assets" toml:"assets"`
 }
 
 func parseConfig(configFilePath string) (Config, error) {

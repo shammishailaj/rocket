@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 
 	"github.com/astrocorp42/rocket/config"
+	"github.com/astrocorp42/rocket/providers/ghreleases"
 	"github.com/astrocorp42/rocket/providers/heroku"
 	"github.com/astrocorp42/rocket/providers/script"
 	"github.com/astroflow/astroflow-go"
@@ -49,14 +50,38 @@ var RocketCmd = &cobra.Command{
 
 		log.With("configuration", conf).Debug("")
 
-		err = script.Deploy(conf)
-		if err != nil {
-			log.Fatal(err.Error())
+		// script
+		if conf.Script != nil {
+			sublogger := log.With("provider", "script")
+			sublogger.Debug("starting provider")
+			err = script.Deploy(conf.Script)
+			if err != nil {
+				sublogger.Fatal(err.Error())
+			}
+		} else {
+			log.With("provider", "script").Debug("provider is empty")
 		}
 
-		err = heroku.Deploy(conf)
-		if err != nil {
-			log.Fatal(err.Error())
+		// heroku
+		if conf.Heroku != nil {
+			sublogger := log.With("provider", "heroku")
+			err = heroku.Deploy(*conf.Heroku)
+			if err != nil {
+				sublogger.Fatal(err.Error())
+			}
+		} else {
+			log.With("provider", "heroku").Debug("provider is empty")
+		}
+
+		// github_releases
+		if conf.GitHubReleases != nil {
+			sublogger := log.With("provider", "github_releases")
+			err = ghreleases.Deploy(*conf.GitHubReleases)
+			if err != nil {
+				sublogger.Fatal(err.Error())
+			}
+		} else {
+			log.With("provider", "github_releases").Debug("provider is empty")
 		}
 	},
 }

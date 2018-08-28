@@ -69,17 +69,14 @@ type CreateBuildSourceBlob struct {
 // create an archive then release using the API
 // https://devcenter.heroku.com/articles/build-and-release-using-the-api
 // TODO: only git checked files
-func Deploy(conf config.Config) error {
-	if conf.Heroku == nil {
-		return nil
-	}
-	if conf.Heroku.App == nil {
+func Deploy(conf config.HerokuConfig) error {
+	if conf.App == nil {
 		return errors.New("heroku.app is missing")
 	}
-	if conf.Heroku.APIKey == nil {
+	if conf.APIKey == nil {
 		return errors.New("heroku.api_key is missing")
 	}
-	if conf.Heroku.Directory == nil {
+	if conf.Directory == nil {
 		return errors.New("heroku.directory is missing")
 	}
 
@@ -117,7 +114,7 @@ func Deploy(conf config.Config) error {
 	}
 
 	// upload it
-	sourceRep, err := createSource(*conf.Heroku)
+	sourceRep, err := createSource(conf)
 	log.With("response", sourceRep).Debug("create source response")
 	log.Info("source created")
 	if err != nil {
@@ -130,7 +127,7 @@ func Deploy(conf config.Config) error {
 	}
 	log.Info("release successfully uploaded")
 
-	buildResp, err := createBuild(*conf.Heroku, CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: "4242"}})
+	buildResp, err := createBuild(conf, CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: "4242"}})
 	if err != nil {
 		return err
 	}
