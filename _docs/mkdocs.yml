@@ -1,0 +1,9 @@
+site_name: Rocket
+site_url: https://astrocorp.net
+
+theme:
+  name: 'material'
+
+nav:
+  - index.md
+  - custom_script.md

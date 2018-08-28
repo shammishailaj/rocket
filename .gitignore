@@ -41,3 +41,4 @@ dist/
 flint
 testdata/**/.rocket.*
 testdata/**/*.tar.gz
+_docs/site/

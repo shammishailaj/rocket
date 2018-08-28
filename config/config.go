@@ -13,7 +13,7 @@ import (
 // DefaultConfigurationFileName is the default configuration file name, without extension
 const DefaultConfigurationFileName = ".rocket.toml"
 
-var PredefinedVariables = []string{
+var PredefinedEnv = []string{
 	"ROCKET_COMMIT_HASH",
 	"ROCKET_LAST_TAG",
 	"ROCKET_GIT_REPO",
@@ -21,7 +21,7 @@ var PredefinedVariables = []string{
 
 type Config struct {
 	Description string            `json:"description" toml:"description"`
-	Variables   map[string]string `json:"variables" toml:"variables"`
+	Env         map[string]string `json:"env" toml:"env"`
 
 	// providers
 	Script         ScriptConfig          `json:"script,omitempty" toml:"script,omitempty"`
@@ -121,12 +121,12 @@ func Get(file string) (Config, error) {
 		return config, err
 	}
 
-	err = setEnv()
+	err = setPredefinedEnv()
 	if err != nil {
 		return config, err
 	}
 
-	err = parseVariables(config)
+	err = parseEnv(config)
 	if err != nil {
 		return config, err
 	}
@@ -136,7 +136,7 @@ func Get(file string) (Config, error) {
 
 // set the default env variables
 // it does not overwrite the already existing
-func setEnv() error {
+func setPredefinedEnv() error {
 	if os.Getenv("ROCKET_COMMIT_HASH") == "" {
 		out, err := exec.Command("git", "rev-parse", "HEAD").Output()
 		if err != nil {
@@ -165,7 +165,8 @@ func setEnv() error {
 			return err
 		}
 		parts := strings.Split(strings.TrimSpace(string(out)), ":")
-		repo := parts[len(parts)-1]
+		parts = strings.Split(parts[len(parts)-1], "/")
+		repo := parts[len(parts)-2] + "/" + parts[len(parts)-1]
 		err = os.Setenv("ROCKET_GIT_REPO", strings.Replace(repo, ".git", "", -1))
 		if err != nil {
 			return err
@@ -176,7 +177,7 @@ func setEnv() error {
 }
 
 func isPredefined(key string) bool {
-	for _, v := range PredefinedVariables {
+	for _, v := range PredefinedEnv {
 		if v == key {
 			return true
 		}
@@ -186,9 +187,9 @@ func isPredefined(key string) bool {
 }
 
 // parseVariables parse the 'variables' field of the configuration, expand them and set them as env
-func parseVariables(conf Config) error {
-	if conf.Variables != nil {
-		for key, value := range conf.Variables {
+func parseEnv(conf Config) error {
+	if conf.Env != nil {
+		for key, value := range conf.Env {
 			var err error
 			key = strings.ToUpper(key)
 			if os.Getenv(key) == "" || isPredefined(key) {
