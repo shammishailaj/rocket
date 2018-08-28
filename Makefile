@@ -10,7 +10,7 @@ REPO="github.com/astrocorp42/rocket"
 VERSION := $(shell cat version/version.go| grep "\sVersion" | cut -d '"' -f2)
 
 define checksums
-	echo $$(openssl sha512 $(1) | cut -d " " -f2) $$(echo $(1) | rev | cut -d "/" -f1 | rev) >> $(2)/sha512sum$(3)
+	echo $$(openssl sha512 $(1) | cut -d " " -f2) $$(echo $(1) | rev | cut -d "/" -f1 | rev) >> $(2)/$(3)
 endef
 
 define build_for_os_arch
@@ -21,13 +21,13 @@ define build_for_os_arch
 		 -X $(REPO)/version.GoVersion=`go version | cut -d' ' -f 3 | cut -c3-`" \
 		 -o $(DIST_DIR)/$(1)_$(2)$(4)/$(VERSION)/$(NAME)$(3)
 	@# binary checksums
-	$(call checksums,$(DIST_DIR)/$(1)_$(2)$(4)/$(VERSION)/$(NAME)$(3),$(DIST_DIR)/$(1)_$(2)$(4)/$(VERSION),.txt)
+	$(call checksums,$(DIST_DIR)/$(1)_$(2)$(4)/$(VERSION)/$(NAME)$(3),$(DIST_DIR)/$(1)_$(2)$(4)/$(VERSION),sha512sum.txt)
 
 	zip -j $(DIST_DIR)/$(NAME)_$(VERSION)_$(1)_$(2)$(4).zip $(DIST_DIR)/$(1)_$(2)$(4)/$(VERSION)/$(NAME)$(3) \
 		$(DIST_DIR)/$(1)_$(2)$(4)/$(VERSION)/sha512sum.txt
 
 	@#archive checksums
-	$(call checksums,$(DIST_DIR)/$(NAME)_$(VERSION)_$(1)_$(2)$(4).zip,dist,s.txt)
+	$(call checksums,$(DIST_DIR)/$(NAME)_$(VERSION)_$(1)_$(2)$(4).zip,dist,$(NAME)_$(VERSION)_sha512sums.txt)
 endef
 
 
