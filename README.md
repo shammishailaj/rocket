@@ -17,13 +17,18 @@ Deploy software as fast and easily as possible
 
 ## Installation
 
-### Using go (nightly)
-```bash
-$ go get -u github.com/astrocorp42/rocket
+### Auto
+``bash
+curl -sf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh | sh
 ```
 
 ### Binary releases
 [https://github.com/astrocorp42/rocket/releases/latest](https://github.com/astrocorp42/rocket/releases/latest)
+
+### Using go (nightly)
+```bash
+$ go get -u github.com/astrocorp42/rocket
+```
 
 
 
