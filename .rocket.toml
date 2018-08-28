@@ -1,5 +1,7 @@
 description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/astrocorp42/rocket"
 
-script = [
-    "ls -lah"
+[github_releases]
+assets = [
+    "dist/*.zip",
+    "dist/sha512sums.txt"
 ]

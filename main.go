@@ -1,15 +1,17 @@
 package main
 
 import (
-	"fmt"
-	"os"
-
 	"github.com/astrocorp42/rocket/commands"
+	"github.com/astroflow/astroflow-go"
+	"github.com/astroflow/astroflow-go/log"
 )
 
 func main() {
+	log.Config(
+		astroflow.SetFormatter(astroflow.NewCLIFormatter()),
+		astroflow.SetLevel(astroflow.InfoLevel),
+	)
 	if err := commands.RocketCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Fatal(err.Error())
 	}
 }

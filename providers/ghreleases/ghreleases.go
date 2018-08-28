@@ -12,14 +12,17 @@ import (
 	"golang.org/x/oauth2"
 )
 
+// GitHubClient represent an authenticated GitHub clien to perform the API operations
 type GitHubClient struct {
 	client *github.Client
 }
 
+// Deploy actually perform the github release and upload assets according to the given configuration
 func Deploy(conf config.Config) error {
 	return nil
 }
 
+// NewClient create a GitHubClient instance with the given authentication information
 func NewClient(token string) (GitHubClient, error) {
 	var err error
 
@@ -31,14 +34,17 @@ func NewClient(token string) (GitHubClient, error) {
 	return GitHubClient{client}, err
 }
 
-func CreateDraft() {
+// CreateDraftRelease create a draft release with the given information
+func CreateDraftRelease() {
 
 }
 
+// UploadAssets upload the given assets to the given release
 func UploadAssets() {
 
 }
 
-func publishRelease() {
+// PublishRelease publish the given release (set draft as false)
+func PublishRelease() {
 
 }

@@ -5,10 +5,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"os"
 
 	"github.com/BurntSushi/toml"
 	"github.com/astrocorp42/rocket/config"
+	"github.com/astroflow/astroflow-go"
+	"github.com/astroflow/astroflow-go/log"
 	"github.com/spf13/cobra"
 )
 
@@ -30,9 +31,12 @@ var InitCmd = &cobra.Command{
 		configFile := config.FindConfigFile("")
 		var err error
 
+		if debug {
+			log.Config(astroflow.SetLevel(astroflow.DebugLevel))
+		}
+
 		if configFile != "" && initForce == false {
-			fmt.Fprintf(os.Stderr, "A configuration file already exists (%s), use --force to override\n", configFile)
-			os.Exit(1)
+			log.Fatal(fmt.Sprintf("A configuration file already exists (%s), use --force to override", configFile))
 		}
 
 		conf := config.Default()
@@ -50,14 +54,12 @@ var InitCmd = &cobra.Command{
 			err = fmt.Errorf("%s is not a valid configuration file format", initFormat)
 		}
 		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
+			log.Fatal(err.Error())
 		}
 
 		err = ioutil.WriteFile(filePath, buf.Bytes(), 0644)
 		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
+			log.Fatal(err.Error())
 		}
 	},
 }

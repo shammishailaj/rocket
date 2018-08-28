@@ -9,12 +9,12 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"time"
 
 	"github.com/astrocorp42/rocket/config"
+	"github.com/astroflow/astroflow-go/log"
 	"github.com/z0mbie42/fswalk"
 )
 
@@ -84,15 +84,13 @@ func Deploy(conf config.Config) error {
 	}
 
 	// create the archive
-	archiveName := "release.tar.gz"
-	os.Remove(archiveName)
-	file, err := os.Create(archiveName)
+	tmpFile, err := ioutil.TempFile("", "rocket.*.tar.gz")
 	if err != nil {
-		log.Fatalln(err)
+		return err
 	}
-	defer file.Close()
+	defer os.Remove(tmpFile.Name())
 	// set up the gzip writer
-	gw := gzip.NewWriter(file)
+	gw := gzip.NewWriter(tmpFile)
 	tw := tar.NewWriter(gw)
 
 	walker, _ := fswalk.NewWalker()
@@ -101,7 +99,7 @@ func Deploy(conf config.Config) error {
 		if file.Path == "." || file.IsDir || file.IsSymLink {
 			continue
 		}
-		fmt.Println("Adding:", file.Path)
+		log.With("archive", tmpFile.Name(), "file", file.Path).Debug("Adding file")
 		err = addFile(tw, file.Path)
 		if err != nil {
 			return err
@@ -114,22 +112,30 @@ func Deploy(conf config.Config) error {
 	if err = gw.Close(); err != nil {
 		return err
 	}
+	if err = tmpFile.Close(); err != nil {
+		return err
+	}
 
 	// upload it
 	sourceRep, err := createSource(*conf.Heroku)
-	fmt.Println(sourceRep)
+	log.With("response", sourceRep).Debug("create source response")
+	log.Info("source created")
 	if err != nil {
 		return err
 	}
-	err = uploadRelease(sourceRep.SourceBlob.PutURL)
+
+	err = uploadRelease(tmpFile.Name(), sourceRep.SourceBlob.PutURL)
 	if err != nil {
 		return err
 	}
-	res, err := createBuild(*conf.Heroku, CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: "4242"}})
+	log.Info("release successfully uploaded")
+
+	buildResp, err := createBuild(*conf.Heroku, CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: "4242"}})
 	if err != nil {
 		return err
 	}
-	fmt.Println(res)
+	log.With("response", buildResp).Debug("create build response")
+	log.Info("build successfully created")
 
 	return nil
 }
@@ -180,8 +186,8 @@ func createSource(conf config.HerokuConfig) (CreateSourceResp, error) {
 	return ret, err
 }
 
-func uploadRelease(putURL string) error {
-	data, err := ioutil.ReadFile("release.tar.gz")
+func uploadRelease(file, putURL string) error {
+	data, err := ioutil.ReadFile(file)
 	if err != nil {
 		return err
 	}
