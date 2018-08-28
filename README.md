@@ -33,7 +33,19 @@ $ go get -u github.com/astrocorp42/rocket
 Go to your project's root directory then
 ```bash
 $ rocket init # create a configuration .rocket.toml file with default configuration
-# edit the file with the desired configuration, then
+# edit the file with the desired configuration
+$ cat .rocket.toml
+```
+```toml
+description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/astrocorp42/rocket"
+
+[github_releases]
+assets = [
+  "dist/*.zip",
+  "dist/sha512sums.txt"
+]
+```
+```bash
 $ rocket # to deploy
 ```
 
