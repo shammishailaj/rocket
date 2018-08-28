@@ -43,6 +43,7 @@ execute() {
   http_download "${TMPDIR}/${TARBALL}" "${TARBALL_URL}"
 
   echo "$PREFIX: verifying checksums"
+  echo "${CHECKSUM_URL}"
   http_download "${TMPDIR}/${CHECKSUM}" "${CHECKSUM_URL}"
   hash_sha512_verify "${TMPDIR}/${TARBALL}" "${TMPDIR}/${CHECKSUM}"
 

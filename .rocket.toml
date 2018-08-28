@@ -3,5 +3,5 @@ description = "This is a configuration file for rocket: Deploy software as fast 
 [github_releases]
 assets = [
   "dist/*.zip",
-  "dist/sha512sums.txt"
+  "dist/rocket_*_sha512sums.txt"
 ]
