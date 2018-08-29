@@ -10,3 +10,7 @@ nav:
   - custom_script.md
   - github_releases.md
   - heroku.md
+
+google_analytics:
+  - 'UA-123569541-1'
+  - 'auto'
