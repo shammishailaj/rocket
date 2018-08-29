@@ -65,6 +65,7 @@ type CreateBuildSourceBlob struct {
 	Version string `json:"version"`
 }
 
+// Client is an wrapper to perform various task against the Heroku API
 type Client struct {
 	APIKey string
 	App    string
@@ -74,16 +75,18 @@ type Client struct {
 // Deploy deploy the script part of the configuration
 // create an archive then release using the API
 // https://devcenter.heroku.com/articles/build-and-release-using-the-api
-// TODO: only git checked files
 func Deploy(conf config.HerokuConfig) error {
 	if conf.App == nil {
-		return errors.New("heroku: app is missing")
+		v := os.Getenv("HEROKU_APP")
+		conf.App = &v
 	}
 	if conf.APIKey == nil {
-		return errors.New("heroku: api_key is missing")
+		v := os.Getenv("HEROKU_API_KEY")
+		conf.App = &v
 	}
 	if conf.Directory == nil {
-		return errors.New("heroku: directory is missing")
+		v := "."
+		conf.App = &v
 	}
 
 	// create the archive

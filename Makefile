@@ -67,7 +67,7 @@ release: clean
 	git push origin v$(VERSION)
 
 docs:
-	cd _docs && mkdocs build
+	cd _docs && rm -rf site && mkdocs build
 
 darwin_386:
 	$(call build_for_os_arch,darwin,386,)

@@ -73,7 +73,7 @@ LS_CMD = "ls $FLAGS $$TMP_DIR" # -> 'ls -al $TMP_DIR'
 
 ### Predefined environment variables
 
-| Varaible             | Description |
+| Variable             | Description |
 | --------------------- | -------|
 | **ROCKET_COMMIT_HASH** | The current commit revision |
 | **ROCKET_LAST_TAG** | The last commit tag name |

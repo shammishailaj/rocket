@@ -14,5 +14,5 @@ const (
 )
 
 const (
-	Version = "0.4.2"
+	Version = "1.0.0"
 )
