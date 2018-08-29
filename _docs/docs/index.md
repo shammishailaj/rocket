@@ -64,7 +64,6 @@ The variables can be overwritten and they take precedence over each other in thi
 rocket allow you to define variables inside `.rocket.toml` that are then injected in the environment.
 For example:
 ```toml
-
 [env]
 MY_VARIABLE = "MYSUPERVALUE"
 # You are able to use other variables inside your variable definition (or escape them with $$):
