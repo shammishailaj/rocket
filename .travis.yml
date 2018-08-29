@@ -24,12 +24,14 @@ before_script:
 script:
   - make
 
+before_deploy:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
 deploy:
   provider: script
   skip_cleanup: true # Important, otherwise the build output would be purged.
   script:
     dist/rocket ; # use rocket to deploy itself :)
-    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
     make docker ;
     make docker_push
   on:
