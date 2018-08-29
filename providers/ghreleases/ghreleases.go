@@ -3,8 +3,8 @@ package ghreleases
 import (
 	"context"
 	"errors"
+	"fmt"
 	"os"
-	// "os/exec"
 	"path/filepath"
 	"strings"
 
@@ -103,15 +103,20 @@ func Deploy(conf config.GitHubReleasesConfig) error {
 		return err
 	}
 
-	log.With("files", files).Debug("uploading assets")
+	log.With("files", files).Debug("github: uploading assets")
 	err = client.UploadAssets(repo, releaseID, files)
 	if err != nil {
 		return err
 	}
 
-	log.Debug("publishing release")
-	err = client.PublishRelease(repo, releaseID)
-	return err
+	log.Debug("github: publishing release")
+	release, err := client.PublishRelease(repo, releaseID)
+	if err != nil {
+		return err
+	}
+
+	log.Info(fmt.Sprintf("github: release published %s", release.GetHTMLURL()))
+	return nil
 }
 
 // NewClient create a GitHubClient instance with the given authentication information
@@ -146,7 +151,7 @@ func (c *GitHubClient) CreateDraftRelease(repo GitHubRepo, name, tag, body strin
 		tag,
 	)
 	if err == nil {
-		log.With("tag", tag, "release_id", release.GetID()).Info("deleting existing release")
+		log.Info(fmt.Sprintf("github: deleting existing release %d", release.GetID()))
 		_, err = c.client.Repositories.DeleteRelease(
 			ctx,
 			repo.Owner,
@@ -168,7 +173,7 @@ func (c *GitHubClient) CreateDraftRelease(repo GitHubRepo, name, tag, body strin
 		return 0, err
 	}
 
-	log.With("url", release.GetHTMLURL()).Info("draft release created")
+	log.Info(fmt.Sprintf("github: draft release created at %s", release.GetHTMLURL()))
 	return release.GetID(), nil
 }
 
@@ -176,7 +181,6 @@ func (c *GitHubClient) CreateDraftRelease(repo GitHubRepo, name, tag, body strin
 func (c *GitHubClient) UploadAssets(repo GitHubRepo, releaseID int64, files []string) error {
 	for _, file := range files {
 		fileName := filepath.Base(file)
-		log.With("file", fileName).Info("uploading asset")
 		f, err := os.Open(file)
 		if err != nil {
 			return err
@@ -195,13 +199,14 @@ func (c *GitHubClient) UploadAssets(repo GitHubRepo, releaseID int64, files []st
 			return err
 		}
 		f.Close()
+		log.With().Info(fmt.Sprintf("github: uploading asset %s", file))
 	}
 
 	return nil
 }
 
 // PublishRelease publish the given release (set draft as false)
-func (c *GitHubClient) PublishRelease(repo GitHubRepo, releaseID int64) error {
+func (c *GitHubClient) PublishRelease(repo GitHubRepo, releaseID int64) (*github.RepositoryRelease, error) {
 	var data = &github.RepositoryRelease{
 		Draft: github.Bool(false),
 	}
@@ -213,12 +218,7 @@ func (c *GitHubClient) PublishRelease(repo GitHubRepo, releaseID int64) error {
 		releaseID,
 		data,
 	)
-	if err != nil {
-		return err
-	}
-
-	log.With("url", release.GetHTMLURL()).Info("release published")
-	return nil
+	return release, err
 }
 
 // parseRepo take as input a string in the forme "owner/repo" et return a GitHubRepo struct
