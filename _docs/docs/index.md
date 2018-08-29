@@ -72,6 +72,9 @@ MY_VARIABLE = "MYSUPERVALUE"
 # You are able to use other variables inside your variable definition (or escape them with $$):
 FLAGS = "-al"
 LS_CMD = "ls $FLAGS $$TMP_DIR" # -> 'ls -al $TMP_DIR'
+
+[heroku]
+api_key = $HEROKU_TOKEN # -> it's not defined above nor in the predefined variables, so it will expand to the already set environment variable
 ```
 
 ### Predefined environment variables
