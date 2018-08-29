@@ -77,7 +77,7 @@ Flags:
 Use "rocket [command] --help" for more information about a command.
 ```
 
-## Documentationa
+## Documentation
 
 See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
 
