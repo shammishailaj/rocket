@@ -36,6 +36,7 @@ type HerokuConfig struct {
 	APIKey    *string `json:"api_key" toml:"api_key"`
 	App       *string `json:"app" toml:"app"`
 	Directory *string `json:"directory" toml:"directory"`
+	Version   *string `json:"version" toml:"version"`
 }
 
 type GitHubReleasesConfig struct {

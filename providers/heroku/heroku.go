@@ -67,9 +67,10 @@ type CreateBuildSourceBlob struct {
 
 // Client is an wrapper to perform various task against the Heroku API
 type Client struct {
-	APIKey string
-	App    string
-	HTTP   *http.Client
+	APIKey  string
+	App     string
+	HTTP    *http.Client
+	Version string
 }
 
 // Deploy deploy the script part of the configuration
@@ -79,14 +80,33 @@ func Deploy(conf config.HerokuConfig) error {
 	if conf.App == nil {
 		v := os.Getenv("HEROKU_APP")
 		conf.App = &v
+	} else {
+		v := config.ExpandEnv(*conf.App)
+		conf.App = &v
 	}
+
 	if conf.APIKey == nil {
 		v := os.Getenv("HEROKU_API_KEY")
 		conf.App = &v
+	} else {
+		v := config.ExpandEnv(*conf.APIKey)
+		conf.APIKey = &v
 	}
+
 	if conf.Directory == nil {
 		v := "."
 		conf.App = &v
+	} else {
+		v := config.ExpandEnv(*conf.Directory)
+		conf.Directory = &v
+	}
+
+	if conf.Version == nil {
+		v := os.Getenv("ROCKET_COMMIT_HASH")
+		conf.Version = &v
+	} else {
+		v := config.ExpandEnv(*conf.Version)
+		conf.Version = &v
 	}
 
 	// create the archive
@@ -123,7 +143,7 @@ func Deploy(conf config.HerokuConfig) error {
 	}
 
 	// upload it
-	client := NewClient(*conf.APIKey, *conf.App)
+	client := NewClient(*conf.APIKey, *conf.App, *conf.Version)
 	sourceRep, err := client.CreateSource()
 	log.With("response", sourceRep).Debug("heroku: create source response")
 	log.Info("heroku: source created")
@@ -137,7 +157,7 @@ func Deploy(conf config.HerokuConfig) error {
 	}
 	log.Info("heroku: release uploaded")
 
-	buildResp, err := client.CreateBuild(CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: "4242"}})
+	buildResp, err := client.CreateBuild(CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: client.Version}})
 	if err != nil {
 		return err
 	}
@@ -147,8 +167,8 @@ func Deploy(conf config.HerokuConfig) error {
 	return nil
 }
 
-func NewClient(apiKey, app string) Client {
-	return Client{apiKey, app, &http.Client{}}
+func NewClient(apiKey, app, version string) Client {
+	return Client{apiKey, app, &http.Client{}, version}
 }
 
 func addFile(tw *tar.Writer, path string) error {

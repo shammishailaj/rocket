@@ -15,6 +15,8 @@ import (
 func Deploy(conf config.ScriptConfig) error {
 	for _, script := range conf {
 		var err error
+
+		script = config.ExpandEnv(script)
 		cmd := exec.Command("sh", "-c", script)
 
 		stdout, err := cmd.StdoutPipe()

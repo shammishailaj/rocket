@@ -32,27 +32,48 @@ func Deploy(conf config.GitHubReleasesConfig) error {
 	if conf.Name == nil {
 		v := os.Getenv("ROCKET_LAST_TAG")
 		conf.Name = &v
+	} else {
+		v := config.ExpandEnv(*conf.Name)
+		conf.Name = &v
 	}
+
 	if conf.Body == nil {
 		v := ""
 		conf.Body = &v
+	} else {
+		v := config.ExpandEnv(*conf.Body)
+		conf.Body = &v
 	}
+
 	if conf.Prerelease == nil {
 		v := false
 		conf.Prerelease = &v
 	}
+
 	if conf.Repo == nil {
 		v := os.Getenv("ROCKET_GIT_REPO")
 		conf.Repo = &v
+	} else {
+		v := config.ExpandEnv(*conf.Repo)
+		conf.Repo = &v
 	}
+
 	if conf.APIKey == nil {
 		v := os.Getenv("GITHUB_API_KEY")
 		conf.APIKey = &v
+	} else {
+		v := config.ExpandEnv(*conf.APIKey)
+		conf.APIKey = &v
 	}
+
 	if conf.Tag == nil {
 		v := os.Getenv("ROCKET_LAST_TAG")
 		conf.Tag = &v
+	} else {
+		v := config.ExpandEnv(*conf.Tag)
+		conf.Tag = &v
 	}
+
 	if conf.Assets == nil {
 		conf.Assets = []string{}
 	}
