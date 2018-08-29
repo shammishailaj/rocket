@@ -8,3 +8,5 @@ theme:
 nav:
   - index.md
   - custom_script.md
+  - github_releases.md
+  - heroku.md

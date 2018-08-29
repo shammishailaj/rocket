@@ -11,6 +11,7 @@ import (
 )
 
 // Deploy deploy the script part of the configuration
+// It sequentially execute all the given scripts
 func Deploy(conf config.ScriptConfig) error {
 	for _, script := range conf {
 		var err error
