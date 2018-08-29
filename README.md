@@ -7,10 +7,11 @@
 Automated deployment as fast and easy as possible. `rocket` is the `D` in CI/CD: It allows to easily deploy software across a large range of providers from any CI/CD pipeline.
 
 1. [Installation](#installation)
-2. [Usage](#usage)
-3. [Documentation](#documentation)
-4. [Available providers](#available-providers)
-5. [Roadmap](#roadmap)
+2. [Docker image](#docker-image)
+3. [Usage](#usage)
+4. [Documentation](#documentation)
+5. [Available providers](#available-providers)
+6. [Roadmap](#roadmap)
 
 -------------------
 
@@ -32,10 +33,12 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 
 
+## Docker image
+
+`astrocorp/rocket`
 
 
 ## Usage
-
 
 Go to your project's root directory then
 ```bash
@@ -93,6 +96,7 @@ See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
 | --------------------- | -------| ------------- |
 | [AWS S3](https://aws.amazon.com/s3) `s3` | :construction: | - |
 | Custom script `script` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/custom_script) |
+| Docker `docker` | :clock1: | - |
 | [Google Firebase](https://firebase.google.com) `firebase` | :clock1: | - |
 | [Google Cloud Storage](https://cloud.google.com/storage) `gcs` | :clock1: | - |
 | [GitHub releases](https://help.github.com/categories/releases) `github_releases` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/github_releases) |
