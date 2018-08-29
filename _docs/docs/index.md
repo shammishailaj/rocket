@@ -1,6 +1,6 @@
 # Introduction
 
-**rocket** is a deployment automation tool. It's the `D` in`CI/CD`. The goal is to provide an easy
+`rocket` is a deployment automation tool. It's the `D` in`CI/CD`. The goal is to provide an easy
 to use uniform experience of software deployement whether in a CI environment or on your local laptotp.
 
 ## Installation
@@ -19,10 +19,29 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 $ go get -u github.com/astrocorp42/rocket
 ```
 
+## Usage
+
+Start by creating a `.rocket.toml`
+
+
+## Environments
+
+`rocket` support different environments throught different configuration files:
+```
+$ tree -a
+.
+├── .rocket_dev.toml
+└── .rocket.toml
+```
+then you ccan run
+```bash
+$ rocket # -> use the default .rocket.toml
+$ rocket -c .rocket_dev.toml # to deploy in your dev environment
+```
 
 ## CI usage
 
-You may want to use the `ci.sh` script to ease the usage in a CI/CD environment.
+You may want to use the `ci.sh` script to ease the usage in a CI/CD environment to ease `rocket` installation and usage.
 Here an example with travis
 ```yaml
 # .travis.yml
@@ -49,6 +68,7 @@ deploy:
     repo: astrocorp42/rocket
     tags: true
 ```
+
 
 ## Environment variables
 

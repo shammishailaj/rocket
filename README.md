@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/github/release/astrocorp42/rocket.svg)](https://github.com/astrocorp42/rocket/releases/latest)
 [![Build Status](https://travis-ci.org/astrocorp42/rocket.svg?branch=master)](https://travis-ci.org/astrocorp42/rocket)
 
-Deploy software as fast and easily as possible. The `D` in CI/CD.
+Automated deployement as fast and easily as possible. `rocket` is the `D` in CI/CD.
 
 1. [Installation](#installation)
 2. [Usage](#usage)
