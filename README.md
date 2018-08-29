@@ -17,6 +17,11 @@ Automated deployment as fast and easy as possible. `rocket` is the `D` in CI/CD:
 
 ## Installation
 
+### Using go (nightly)
+```bash
+$ go get -u github.com/astrocorp42/rocket
+```
+
 ### Latest
 ```bash
 curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh | sh
@@ -25,10 +30,6 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 ### Binary releases
 [https://github.com/astrocorp42/rocket/releases/latest](https://github.com/astrocorp42/rocket/releases/latest)
 
-### Using go (nightly)
-```bash
-$ go get -u github.com/astrocorp42/rocket
-```
 
 
 

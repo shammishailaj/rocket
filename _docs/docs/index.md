@@ -9,6 +9,10 @@ The only required dependecy is `git`.
 
 ## Installation
 
+### Using go (nightly)
+```bash
+$ go get -u github.com/astrocorp42/rocket
+```
 
 ### Latest
 ```bash
@@ -17,11 +21,6 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 ### Binary releases
 [https://github.com/astrocorp42/rocket/releases/latest](https://github.com/astrocorp42/rocket/releases/latest)
-
-### Using go (nightly)
-```bash
-$ go get -u github.com/astrocorp42/rocket
-```
 
 ## Usage
 
