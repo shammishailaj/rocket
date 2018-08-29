@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/github/release/astrocorp42/rocket.svg)](https://github.com/astrocorp42/rocket/releases/latest)
 [![Build Status](https://travis-ci.org/astrocorp42/rocket.svg?branch=master)](https://travis-ci.org/astrocorp42/rocket)
 
-Automated deployement as fast and easily as possible. `rocket` is the `D` in CI/CD.
+Automated deployement as fast and easy as possible. `rocket` is the `D` in CI/CD.
 
 1. [Installation](#installation)
 2. [Usage](#usage)
@@ -42,7 +42,7 @@ $ rocket init # create a configuration .rocket.toml file with default configurat
 $ cat .rocket.toml
 ```
 ```toml
-description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/astrocorp42/rocket"
+description = "This is a configuration file for rocket: Automated deployement as fast and easy as possible. See https://github.com/astrocorp42/rocket"
 
 [github_releases]
 assets = [

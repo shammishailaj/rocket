@@ -25,8 +25,8 @@ func init() {
 // RocketCmd is the rocket's root command. It's used to actually deploy
 var RocketCmd = &cobra.Command{
 	Use:   "rocket",
-	Short: "Deploy software as fast and easily as possible",
-	Long:  "Deploy software as fast and easily as possible. See https://github.com/z0mbie42/rocket",
+	Short: "Automated deployement as fast and easy as possible",
+	Long:  "Automated deployement as fast and easy as possible. rocket is the D in CI/CD. See https://github.com/z0mbie42/rocket",
 	Run: func(cmd *cobra.Command, args []string) {
 		var err error
 

@@ -25,7 +25,7 @@ $ go get -u github.com/astrocorp42/rocket
 
 Start by creating a `.rocket.toml` file. Here is an example to deploy a GitHub release:
 ```toml
-description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/astrocorp42/rocket"
+description = "This is a configuration file for rocket: automated deployement as fast and easy as possible. See https://github.com/astrocorp42/rocket"
 
 [github_releases]
 # the assets to upload
