@@ -6,6 +6,7 @@
 | ----- | -----| ------------- |------------ |
 | `docker_username` | `string` | **$DOCKER_USERNAME** | The require docker username to login to the docker registry |
 | `docker_password` | `string` | **$DOCKER_PASSWORD** | The require docker username to login to the docker registry |
+| `login` | `bool` | `true` | Whether to `docker login` or not. If set to false, the `docker login` command should be done before `rocket` usage |
 | `images` | `[string]` | `[]` | The local docker images to publish|
 
 
