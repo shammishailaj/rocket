@@ -78,6 +78,7 @@ See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
 | [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) `sftp` | :clock1: |
 | [SSH](https://en.wikipedia.org/wiki/Secure_Shell) `ssh` | :clock1: |
 
+:heavy_check_mark: = Done :construction: = in progress :clock1: = planned
 
 
 ## Roadmap
