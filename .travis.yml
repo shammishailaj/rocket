@@ -23,6 +23,7 @@ before_script:
 
 script:
   - make
+  - make docker
 
 before_deploy:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -32,7 +33,6 @@ deploy:
   skip_cleanup: true # Important, otherwise the build output would be purged.
   script:
     dist/rocket ; # use rocket to deploy itself :)
-    make docker ;
     make docker_push
   on:
     repo: astrocorp42/rocket
