@@ -1,7 +1,7 @@
 # Introduction
 
 `rocket` is a deployment automation tool. It's the `D` in`CI/CD`. The goal is to provide an easy
-to use uniform experience of software deployement whether in a CI environment or on your local laptotp.
+to use uniform experience of software deployment whether in a CI environment or on your local laptotp.
 
 The only required dependecy is `git`.
 
@@ -25,7 +25,7 @@ $ go get -u github.com/astrocorp42/rocket
 
 Start by creating a `.rocket.toml` file. Here is an example to deploy a GitHub release:
 ```toml
-description = "This is a configuration file for rocket: automated deployement as fast and easy as possible. See https://github.com/astrocorp42/rocket"
+description = "This is a configuration file for rocket: automated deployment as fast and easy as possible. See https://github.com/astrocorp42/rocket"
 
 [github_releases]
 # the assets to upload
