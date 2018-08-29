@@ -50,7 +50,7 @@ execute() {
   install "${TMPDIR}/${BINARY}" "${BINDIR}/"
   echo "$PREFIX: installed as ${BINDIR}/${BINARY}"
 
-  echo 'export PATH="$PATH:$BINDIR" >> $HOME/.profile'
+  echo "export PATH=\"\$PATH:$BINDIR\" >> $HOME/.profile"
   echo "export PATH=\"\$PATH:$BINDIR\"" >> $HOME/.profile
 
   echo "\n$PREFIX: install finished. Use 'export PATH=\"\$PATH:$BINDIR\"' to use $BINARY in the current shell session"
