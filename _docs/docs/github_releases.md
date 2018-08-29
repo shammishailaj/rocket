@@ -18,9 +18,9 @@
 ```toml
 # .rocket.toml
 [github_releases]
-api_key = $GITHUB_TOKEN
+api_key = "$GITHUB_TOKEN"
 assets = [
   "dist/*.zip",
-  "dist/rocket_*_sha512sums.txt"
+  "dist/rocket_*_sha512sums.txt",
 ]
 ```

@@ -103,7 +103,7 @@ FLAGS = "-al"
 LS_CMD = "ls $FLAGS $$TMP_DIR" # -> 'ls -al $TMP_DIR'
 
 [heroku]
-api_key = $HEROKU_TOKEN # -> it's not defined above nor in the predefined variables, so it will expand to the already set environment variable
+api_key = "$HEROKU_TOKEN" # -> it's not defined above nor in the predefined variables, so it will expand to the already set environment variable
 ```
 
 ### Predefined environment variables
