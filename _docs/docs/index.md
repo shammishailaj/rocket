@@ -7,6 +7,14 @@ It allows to easily deploy software across a large range of providers from any C
 
 The only required dependecy is `git`.
 
+
+[![GoDoc](https://godoc.org/github.com/astrocorp42/rocket?status.svg)](https://godoc.org/github.com/astrocorp42/rocket)
+[![GitHub release](https://img.shields.io/github/release/astrocorp42/rocket.svg)](https://github.com/astrocorp42/rocket/releases/latest)
+[![Build Status](https://travis-ci.org/astrocorp42/rocket.svg?branch=master)](https://travis-ci.org/astrocorp42/rocket)
+[![Docker image](https://img.shields.io/badge/docker-astrocorp/rocket-blue.svg)](https://hub.docker.com/r/astrocorp/rocket)
+
+
+
 ## Installation
 
 ### Using go (nightly)
@@ -21,6 +29,16 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 ### Binary releases
 [https://github.com/astrocorp42/rocket/releases/latest](https://github.com/astrocorp42/rocket/releases/latest)
+
+
+
+
+## Docker image
+
+`astrocorp/rocket`
+
+
+
 
 ## Usage
 
@@ -38,6 +56,8 @@ assets = [
 ]
 ```
 
+
+
 ## Environments
 
 `rocket` support different environments throught different configuration files:
@@ -52,6 +72,8 @@ then you ccan run
 $ rocket # -> use the default .rocket.toml
 $ rocket -c .rocket_dev.toml # to deploy in your dev environment
 ```
+
+
 
 ## CI usage
 
@@ -82,6 +104,7 @@ deploy:
     repo: astrocorp42/rocket
     tags: true
 ```
+
 
 
 ## Environment variables
@@ -118,6 +141,9 @@ api_key = "$HEROKU_TOKEN" # -> it's not defined above nor in the predefined vari
 | **ROCKET_COMMIT_HASH** | The current commit revision |
 | **ROCKET_LAST_TAG** | The last commit tag name |
 | **ROCKET_GIT_REPO** |  The slug (in form: **owner_name/repo_name**) of the repository currently being deployed |
+
+
+
 
 ## Roadmap
 
