@@ -28,9 +28,10 @@ deploy:
   provider: script
   skip_cleanup: true # Important, otherwise the build output would be purged.
   script:
-    - dist/rocket # use rocket to deploy itself :)
-    - make docker
-    - make docker_push
+    dist/rocket ; # use rocket to deploy itself :)
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
+    make docker ;
+    make docker_push
   on:
     repo: astrocorp42/rocket
     tags: true # The deployment happens only if the commit has a tag
