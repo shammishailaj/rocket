@@ -74,6 +74,9 @@ See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
 | [Heroku](https://www.heroku.com) `heroku` | :heavy_check_mark: |
 | [Netlify](https://www.netlify.com) `netlify` | :clock1: |
 | [NPM](https://www.npmjs.com) `npm` | :clock1: |
+| [SCP](https://en.wikipedia.org/wiki/Secure_copy) `scp` | :clock1: |
+| [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) `sftp` | :clock1: |
+| [SSH](https://en.wikipedia.org/wiki/Secure_Shell) `ssh` | :clock1: |
 
 
 

@@ -78,3 +78,7 @@ LS_CMD = "ls $FLAGS $$TMP_DIR" # -> 'ls -al $TMP_DIR'
 | **ROCKET_COMMIT_HASH** | The current commit revision |
 | **ROCKET_LAST_TAG** | The last commit tag name |
 | **ROCKET_GIT_REPO** |  The slug (in form: **owner_name/repo_name**) of the repository currently being deployed |
+
+## Roadmap
+
+See [https://github.com/astrocorp42/rocket/projects/2](https://github.com/astrocorp42/rocket/projects/2)

@@ -65,19 +65,25 @@ type CreateBuildSourceBlob struct {
 	Version string `json:"version"`
 }
 
+type Client struct {
+	APIKey string
+	App    string
+	HTTP   *http.Client
+}
+
 // Deploy deploy the script part of the configuration
 // create an archive then release using the API
 // https://devcenter.heroku.com/articles/build-and-release-using-the-api
 // TODO: only git checked files
 func Deploy(conf config.HerokuConfig) error {
 	if conf.App == nil {
-		return errors.New("heroku.app is missing")
+		return errors.New("heroku: app is missing")
 	}
 	if conf.APIKey == nil {
-		return errors.New("heroku.api_key is missing")
+		return errors.New("heroku: api_key is missing")
 	}
 	if conf.Directory == nil {
-		return errors.New("heroku.directory is missing")
+		return errors.New("heroku: directory is missing")
 	}
 
 	// create the archive
@@ -96,7 +102,7 @@ func Deploy(conf config.HerokuConfig) error {
 		if file.Path == "." || file.IsDir || file.IsSymLink {
 			continue
 		}
-		log.With("archive", tmpFile.Name(), "file", file.Path).Debug("Adding file")
+		log.With("archive", tmpFile.Name(), "file", file.Path).Debug("heroku: adding file to final archive")
 		err = addFile(tw, file.Path)
 		if err != nil {
 			return err
@@ -114,27 +120,32 @@ func Deploy(conf config.HerokuConfig) error {
 	}
 
 	// upload it
-	sourceRep, err := createSource(conf)
-	log.With("response", sourceRep).Debug("create source response")
-	log.Info("source created")
+	client := NewClient(*conf.APIKey, *conf.App)
+	sourceRep, err := client.CreateSource()
+	log.With("response", sourceRep).Debug("heroku: create source response")
+	log.Info("heroku: source created")
 	if err != nil {
 		return err
 	}
 
-	err = uploadRelease(tmpFile.Name(), sourceRep.SourceBlob.PutURL)
+	err = client.UploadRelease(tmpFile.Name(), sourceRep.SourceBlob.PutURL)
 	if err != nil {
 		return err
 	}
-	log.Info("release successfully uploaded")
+	log.Info("heroku: release uploaded")
 
-	buildResp, err := createBuild(conf, CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: "4242"}})
+	buildResp, err := client.CreateBuild(CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: "4242"}})
 	if err != nil {
 		return err
 	}
-	log.With("response", buildResp).Debug("create build response")
-	log.Info("build successfully created")
+	log.With("response", buildResp).Debug("heroku: create build response")
+	log.Info("heroku: build created")
 
 	return nil
+}
+
+func NewClient(apiKey, app string) Client {
+	return Client{apiKey, app, &http.Client{}}
 }
 
 func addFile(tw *tar.Writer, path string) error {
@@ -163,14 +174,13 @@ func addFile(tw *tar.Writer, path string) error {
 	return nil
 }
 
-func createSource(conf config.HerokuConfig) (CreateSourceResp, error) {
+func (c *Client) CreateSource() (CreateSourceResp, error) {
 	var ret CreateSourceResp
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("https://api.heroku.com/apps/%s/sources", *conf.App), nil)
+	req, err := http.NewRequest("POST", fmt.Sprintf("https://api.heroku.com/apps/%s/sources", c.App), nil)
 	req.Header.Set("Accept", "application/vnd.heroku+json; version=3")
-	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", *conf.APIKey))
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
+	resp, err := c.HTTP.Do(req)
 	if err != nil {
 		return ret, err
 	}
@@ -183,7 +193,7 @@ func createSource(conf config.HerokuConfig) (CreateSourceResp, error) {
 	return ret, err
 }
 
-func uploadRelease(file, putURL string) error {
+func (c *Client) UploadRelease(file, putURL string) error {
 	data, err := ioutil.ReadFile(file)
 	if err != nil {
 		return err
@@ -192,8 +202,7 @@ func uploadRelease(file, putURL string) error {
 	req, err := http.NewRequest("PUT", putURL, bytes.NewBuffer(data))
 	req.Header.Set("Content-Type", "")
 
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	resp, err := c.HTTP.Do(req)
 	if err != nil {
 		return err
 	}
@@ -209,7 +218,7 @@ func uploadRelease(file, putURL string) error {
 	return nil
 }
 
-func createBuild(conf config.HerokuConfig, payload CreateBuildReq) (CreateBuildResp, error) {
+func (c *Client) CreateBuild(payload CreateBuildReq) (CreateBuildResp, error) {
 	var ret CreateBuildResp
 	var err error
 
@@ -218,10 +227,10 @@ func createBuild(conf config.HerokuConfig, payload CreateBuildReq) (CreateBuildR
 		return ret, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("https://api.heroku.com/apps/%s/builds", *conf.App), bytes.NewBuffer(data))
+	req, err := http.NewRequest("POST", fmt.Sprintf("https://api.heroku.com/apps/%s/builds", c.App), bytes.NewBuffer(data))
 	req.Header.Set("Accept", "application/vnd.heroku+json; version=3")
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", *conf.APIKey))
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {

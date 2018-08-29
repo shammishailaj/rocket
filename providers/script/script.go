@@ -44,6 +44,6 @@ func Deploy(conf config.ScriptConfig) error {
 		log.Info(fmt.Sprintf("script: %s successfully executed", script))
 	}
 
-	log.Info("scripts successfully proceeded")
+	log.Info("script: successfully proceeded")
 	return nil
 }

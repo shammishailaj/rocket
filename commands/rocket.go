@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -53,36 +54,35 @@ var RocketCmd = &cobra.Command{
 
 		// script
 		if conf.Script != nil {
-			sublogger := log.With("provider", "script")
-			sublogger.Debug("starting provider")
+			log.Debug("script: starting provider")
 			err = script.Deploy(conf.Script)
 			if err != nil {
-				sublogger.Fatal(err.Error())
+				log.Fatal(fmt.Sprintf("script: %v", err))
 			}
 		} else {
-			log.With("provider", "script").Debug("provider is empty")
+			log.Debug("script: provider is empty")
 		}
 
 		// heroku
 		if conf.Heroku != nil {
-			sublogger := log.With("provider", "heroku")
+			log.Debug("heroku: starting provider")
 			err = heroku.Deploy(*conf.Heroku)
 			if err != nil {
-				sublogger.Fatal(err.Error())
+				log.Fatal(fmt.Sprintf("heroku: %v", err))
 			}
 		} else {
-			log.With("provider", "heroku").Debug("provider is empty")
+			log.Debug("heroku: provider is empty")
 		}
 
 		// github_releases
 		if conf.GitHubReleases != nil {
-			sublogger := log.With("provider", "github_releases")
+			log.Debug("github_releases: starting provider")
 			err = ghreleases.Deploy(*conf.GitHubReleases)
 			if err != nil {
-				sublogger.Fatal(err.Error())
+				log.Fatal(fmt.Sprintf("github_releases: %v", err))
 			}
 		} else {
-			log.With("provider", "github_releases").Debug("provider is empty")
+			log.Debug("github_releases: provider is empty")
 		}
 	},
 }
