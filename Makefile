@@ -3,6 +3,8 @@
 .PHONY: linux_arm6 linux_arm7 linux_arm64 linux_386 linux_amd64 linux_mips linux_mips64
 .PHONY: windows_386 windows_amd64
 .PHONY: freebsd_386 freebsd_amd64 freebsd_arm6 freebsd_arm7
+.PHONY: openbsd_386 open_amd64 open_arm6 open_arm7
+.PHONY: netbsd_386 net_amd64 net_arm6 net_arm7
 
 NAME = rocket
 DIST_DIR = dist
@@ -58,7 +60,7 @@ dir:
 
 re_all: clean all
 
-all: darwin_386 darwin_amd64 linux_arm6 linux_arm7 linux_arm64 linux_386 linux_amd64 linux_mips linux_mips64 windows_386 windows_amd64 freebsd_386 freebsd_amd64 freebsd_arm6 freebsd_arm7
+all: darwin_386 darwin_amd64 linux_arm6 linux_arm7 linux_arm64 linux_386 linux_amd64 linux_mips linux_mips64 windows_386 windows_amd64 freebsd_386 freebsd_amd64 freebsd_arm6 freebsd_arm7 openbsd_386 openbsd_amd64 openbsd_arm6 openbsd_arm7 netbsd_386 netbsd_amd64 netbsd_arm6 netbsd_arm7
 
 release: clean
 	git tag v$(VERSION)
@@ -111,3 +113,27 @@ freebsd_arm6:
 
 freebsd_arm7:
 	$(call build_for_os_arch,freebsd,arm,,7)
+
+openbsd_386:
+	$(call build_for_os_arch,openbsd,386,)
+
+openbsd_amd64:
+	$(call build_for_os_arch,openbsd,amd64,)
+
+openbsd_arm6:
+	$(call build_for_os_arch,openbsd,arm,,6)
+
+openbsd_arm7:
+	$(call build_for_os_arch,openbsd,arm,,7)
+
+netbsd_386:
+	$(call build_for_os_arch,netbsd,386,)
+
+netbsd_amd64:
+	$(call build_for_os_arch,netbsd,amd64,)
+
+netbsd_arm6:
+	$(call build_for_os_arch,netbsd,arm,,6)
+
+netbsd_arm7:
+	$(call build_for_os_arch,netbsd,arm,,7)

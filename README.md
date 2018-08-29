@@ -17,9 +17,9 @@ Deploy software as fast and easily as possible
 
 ## Installation
 
-### Auto
-``bash
-curl -sf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh | sh
+### Latest
+```bash
+curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh | sh
 ```
 
 ### Binary releases
