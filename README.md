@@ -55,6 +55,8 @@ assets = [
 $ rocket # to deploy
 ```
 
+See [https://github.com/astrocorp42/rocket/blob/master/.rocket.toml](https://github.com/astrocorp42/rocket/blob/master/.rocket.toml) for an example with the `github_releases` provider.
+
 Help
 ```bash
 $ rocket help
