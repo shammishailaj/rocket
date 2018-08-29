@@ -35,6 +35,7 @@ $ go get -u github.com/astrocorp42/rocket
 
 ## Usage
 
+
 Go to your project's root directory then
 ```bash
 $ rocket init # create a configuration .rocket.toml file with default configuration
@@ -54,7 +55,27 @@ assets = [
 $ rocket # to deploy
 ```
 
+Help
+``bash
+$ rocket help
+Automated deployement as fast and easy as possible. rocket is the D in CI/CD. See https://github.com/astrocorp42/rocket
 
+Usage:
+  rocket [flags]
+  rocket [command]
+
+Available Commands:
+  help        Help about any command
+  init        Init rocket by creating a .rocket.toml configuration file
+  version     Display the version and build information
+
+Flags:
+  -c, --config string   Use the specified configuration file (and set it's directory as the working directory
+  -d, --debug           Display debug information
+  -h, --help            help for rocket
+
+Use "rocket [command] --help" for more information about a command.
+```
 
 ## Documentation
 See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
