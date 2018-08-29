@@ -3,6 +3,8 @@
 `rocket` is a deployment automation tool. It's the `D` in`CI/CD`. The goal is to provide an easy
 to use uniform experience of software deployment whether in a CI environment or on your local laptotp.
 
+It allows to easily deploy code across a large range of providers from any CI/CD pipeline.
+
 The only required dependecy is `git`.
 
 ## Installation
