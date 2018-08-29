@@ -1,6 +1,8 @@
-# This is a weird way of telling Travis to use the fast container-based test
-# runner instead of the slow VM-based runner.
-sudo: false
+sudo: required
+
+
+services:
+  - docker
 
 language: go
 
@@ -25,7 +27,10 @@ script:
 deploy:
   provider: script
   skip_cleanup: true # Important, otherwise the build output would be purged.
-  script: dist/rocket # use rocket to deploy itself :)
+  script:
+    - dist/rocket # use rocket to deploy itself :)
+    - make docker
+    - make docker_push
   on:
     repo: astrocorp42/rocket
     tags: true # The deployment happens only if the commit has a tag
