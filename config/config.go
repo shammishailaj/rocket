@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/BurntSushi/toml"
+	"github.com/astroflow/astroflow-go/log"
 )
 
 // DefaultConfigurationFileName is the default configuration file name, without extension
@@ -139,36 +140,45 @@ func Get(file string) (Config, error) {
 // it does not overwrite the already existing
 func setPredefinedEnv() error {
 	if os.Getenv("ROCKET_COMMIT_HASH") == "" {
+		v := ""
 		out, err := exec.Command("git", "rev-parse", "HEAD").Output()
-		if err != nil {
-			return err
+		if err == nil {
+			v = strings.TrimSpace(string(out))
+		} else {
+			log.With("err", err, "var", "ROCKET_COMMIT_HASH").Debug("error setting env var")
 		}
-		err = os.Setenv("ROCKET_COMMIT_HASH", strings.TrimSpace(string(out)))
+		err = os.Setenv("ROCKET_COMMIT_HASH", v)
 		if err != nil {
 			return err
 		}
 	}
 
 	if os.Getenv("ROCKET_LAST_TAG") == "" {
+		v := ""
 		out, err := exec.Command("git", "describe", "--tags", "--abbrev=0").Output()
-		if err != nil {
-			return err
+		if err == nil {
+			v = strings.TrimSpace(string(out))
+		} else {
+			log.With("err", err, "var", "ROCKET_LAST_TAG").Debug("error setting env var")
 		}
-		err = os.Setenv("ROCKET_LAST_TAG", strings.TrimSpace(string(out)))
+		err = os.Setenv("ROCKET_LAST_TAG", v)
 		if err != nil {
 			return err
 		}
 	}
 
 	if os.Getenv("ROCKET_GIT_REPO") == "" {
+		v := ""
 		out, err := exec.Command("git", "config", "--get", "remote.origin.url").Output()
-		if err != nil {
-			return err
+		if err == nil {
+			parts := strings.Split(strings.TrimSpace(string(out)), ":")
+			parts = strings.Split(parts[len(parts)-1], "/")
+			repo := parts[len(parts)-2] + "/" + parts[len(parts)-1]
+			v = strings.Replace(repo, ".git", "", -1)
+		} else {
+			log.With("err", err, "var", "ROCKET_GIT_REPO").Debug("error setting env var")
 		}
-		parts := strings.Split(strings.TrimSpace(string(out)), ":")
-		parts = strings.Split(parts[len(parts)-1], "/")
-		repo := parts[len(parts)-2] + "/" + parts[len(parts)-1]
-		err = os.Setenv("ROCKET_GIT_REPO", strings.Replace(repo, ".git", "", -1))
+		err = os.Setenv("ROCKET_GIT_REPO", v)
 		if err != nil {
 			return err
 		}
