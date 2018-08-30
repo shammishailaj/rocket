@@ -24,6 +24,7 @@ before_script:
 script:
   - make all
   - make docker
+  - export VERSION=$(cat version/version.go| grep "\sVersion" | cut -d '"' -f2)
 
 deploy:
   provider: script

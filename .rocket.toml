@@ -8,6 +8,6 @@ assets = [
 
 [docker]
 images = [
-  "astrocorp/rocket:$ROCKET_LAST_TAG",
+  "astrocorp/rocket:$VERSION",
   "astrocorp/rocket:latest",
 ]
