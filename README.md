@@ -98,7 +98,7 @@ See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
 | --------------------- | -------| ------------- |
 | [AWS S3](https://aws.amazon.com/s3) `s3` | :construction: | - |
 | Custom script `script` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/custom_script) |
-| [Docker](https://www.docker.com) `docker` | :construction: | [docs](https://astrocorp.net/rocket/docker) |
+| [Docker](https://www.docker.com) `docker` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/docker) |
 | [Google Firebase](https://firebase.google.com) `firebase` | :clock1: | - |
 | [Google Cloud Storage](https://cloud.google.com/storage) `gcs` | :clock1: | - |
 | [GitHub releases](https://help.github.com/categories/releases) `github_releases` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/github_releases) |

@@ -199,7 +199,7 @@ func (c *GitHubClient) UploadAssets(repo GitHubRepo, releaseID int64, files []st
 			return err
 		}
 		f.Close()
-		log.With().Info(fmt.Sprintf("github: uploading asset %s", file))
+		log.With().Info(fmt.Sprintf("github: asset %s uploaded", file))
 	}
 
 	return nil

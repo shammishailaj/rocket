@@ -66,22 +66,14 @@ is_supported_platform() {
     linux/arm6) found=0 ;;
     linux/arm7) found=0 ;;
     linux/arm64) found=0 ;;
-    linux/mips) found=0 ;;
-    linux/mips64) found=0 ;;
     windows/amd64) found=0 ;;
     windows/386) found=0 ;;
     freebsd/amd64) found=0 ;;
     freebsd/386) found=0 ;;
-    freebsd/arm6) found=0 ;;
-    freebsd/arm7) found=0 ;;
     openbsd/amd64) found=0 ;;
     openbsd/386) found=0 ;;
-    openbsd/arm6) found=0 ;;
-    openbsd/arm7) found=0 ;;
     netbsd/amd64) found=0 ;;
     netbsd/386) found=0 ;;
-    netbsd/arm6) found=0 ;;
-    netbsd/arm7) found=0 ;;
   esac
   return $found
 }

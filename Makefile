@@ -63,7 +63,7 @@ dir:
 
 re_all: clean all
 
-all: darwin_386 darwin_amd64 linux_arm6 linux_arm7 linux_arm64 linux_386 linux_amd64 linux_mips linux_mips64 windows_386 windows_amd64 freebsd_386 freebsd_amd64 openbsd_386 openbsd_amd64 netbsd_386 netbsd_amd64
+all: darwin_386 darwin_amd64 linux_arm6 linux_arm7 linux_arm64 linux_386 linux_amd64 windows_386 windows_amd64 freebsd_386 freebsd_amd64 openbsd_386 openbsd_amd64 netbsd_386 netbsd_amd64
 
 release: clean
 	git tag v$(VERSION)
