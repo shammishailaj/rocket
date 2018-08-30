@@ -28,6 +28,7 @@ type Config struct {
 	Script         ScriptConfig          `json:"script,omitempty" toml:"script,omitempty"`
 	Heroku         *HerokuConfig         `json:"heroku,omitempty" toml:"heroku,omitempty"`
 	GitHubReleases *GitHubReleasesConfig `json:"github_releases,omitempty" toml:"github_releases,omitempty"`
+	Docker         *DockerConfig         `json:"docker" toml:"docker"`
 }
 
 // ScriptConfig is the configration for the script provider
@@ -48,6 +49,14 @@ type GitHubReleasesConfig struct {
 	APIKey     *string  `json:"api_key" toml:"api_key"`
 	Assets     []string `json:"assets" toml:"assets"`
 	Tag        *string  `json:"tag" toml:"tag"`
+}
+
+// DockerConfig is the configration for the docker provider
+type DockerConfig struct {
+	Username *string  `json:"username" toml:"username"`
+	Password *string  `josn:"password" toml:"password"`
+	Login    *bool    `json:"login" toml:"login"`
+	Images   []string `json:"images" toml:"images"`
 }
 
 // ExpandEnv 'fix' os.ExpandEnv by allowing to use $$ to escape a dollar e.g: $$HOME -> $HOME

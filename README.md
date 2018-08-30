@@ -61,7 +61,7 @@ assets = [
 $ rocket # to deploy
 ```
 
-See [https://github.com/astrocorp42/rocket/blob/master/.rocket.toml](https://github.com/astrocorp42/rocket/blob/master/.rocket.toml) for an example with the `github_releases` provider.
+See [https://github.com/astrocorp42/rocket/blob/master/.rocket.toml](https://github.com/astrocorp42/rocket/blob/master/.rocket.toml) for an example using both the `github_releases` and the `docker` providers.
 
 Help
 ```bash

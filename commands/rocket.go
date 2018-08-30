@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/astrocorp42/rocket/config"
+	"github.com/astrocorp42/rocket/providers/docker"
 	"github.com/astrocorp42/rocket/providers/ghreleases"
 	"github.com/astrocorp42/rocket/providers/heroku"
 	"github.com/astrocorp42/rocket/providers/script"
@@ -83,6 +84,17 @@ var RocketCmd = &cobra.Command{
 			}
 		} else {
 			log.Debug("github_releases: provider is empty")
+		}
+
+		// docker
+		if conf.Docker != nil {
+			log.Debug("docker: starting provider")
+			err = docker.Deploy(*conf.Docker)
+			if err != nil {
+				log.Fatal(fmt.Sprintf("docker: %v", err))
+			}
+		} else {
+			log.Debug("docker: provider is empty")
 		}
 	},
 }
