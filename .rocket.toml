@@ -5,3 +5,9 @@ assets = [
   "dist/*.zip",
   "dist/rocket_*_sha512sums.txt"
 ]
+
+[docker]
+images = [
+  "astrocorp/rocket:$ROCKET_LAST_TAG",
+  "astrocorp/rocket:latest",
+]

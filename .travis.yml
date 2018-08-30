@@ -16,6 +16,7 @@ git:
   submodules: false
 
 before_script:
+  - go get -u github.com/astrocorp42/flint
   - go get
   - make test
   - make
