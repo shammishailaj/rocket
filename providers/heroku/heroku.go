@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/astrocorp42/rocket/config"
+	"github.com/astrocorp42/rocket/version"
 	"github.com/astroflow/astroflow-go/log"
 	"github.com/z0mbie42/fswalk"
 )
@@ -67,10 +68,10 @@ type CreateBuildSourceBlob struct {
 
 // Client is an wrapper to perform various task against the Heroku API
 type Client struct {
-	APIKey  string
-	App     string
-	HTTP    *http.Client
-	Version string
+	APIKey    string
+	App       string
+	HTTP      *http.Client
+	UserAgent string
 }
 
 // Deploy deploy the script part of the configuration
@@ -143,7 +144,7 @@ func Deploy(conf config.HerokuConfig) error {
 	}
 
 	// upload it
-	client := NewClient(*conf.APIKey, *conf.App, *conf.Version)
+	client := NewClient(*conf.APIKey, *conf.App)
 	sourceRep, err := client.CreateSource()
 	log.With("response", sourceRep).Debug("heroku: create source response")
 	log.Info("heroku: source created")
@@ -157,7 +158,7 @@ func Deploy(conf config.HerokuConfig) error {
 	}
 	log.Info("heroku: release uploaded")
 
-	buildResp, err := client.CreateBuild(CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: client.Version}})
+	buildResp, err := client.CreateBuild(CreateBuildReq{SourceBlob: CreateBuildSourceBlob{URL: sourceRep.SourceBlob.GetURL, Version: *conf.Version}})
 	if err != nil {
 		return err
 	}
@@ -167,8 +168,8 @@ func Deploy(conf config.HerokuConfig) error {
 	return nil
 }
 
-func NewClient(apiKey, app, version string) Client {
-	return Client{apiKey, app, &http.Client{}, version}
+func NewClient(apiKey, app string) Client {
+	return Client{apiKey, app, &http.Client{}, fmt.Sprintf("rocket/%s", version.Version)}
 }
 
 func addFile(tw *tar.Writer, path string) error {
@@ -203,6 +204,7 @@ func (c *Client) CreateSource() (CreateSourceResp, error) {
 	req, err := http.NewRequest("POST", fmt.Sprintf("https://api.heroku.com/apps/%s/sources", c.App), nil)
 	req.Header.Set("Accept", "application/vnd.heroku+json; version=3")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
+	req.Header.Set("User-Agent", c.UserAgent)
 	resp, err := c.HTTP.Do(req)
 	if err != nil {
 		return ret, err
@@ -224,6 +226,7 @@ func (c *Client) UploadRelease(file, putURL string) error {
 
 	req, err := http.NewRequest("PUT", putURL, bytes.NewBuffer(data))
 	req.Header.Set("Content-Type", "")
+	req.Header.Set("User-Agent", c.UserAgent)
 
 	resp, err := c.HTTP.Do(req)
 	if err != nil {
@@ -254,6 +257,7 @@ func (c *Client) CreateBuild(payload CreateBuildReq) (CreateBuildResp, error) {
 	req.Header.Set("Accept", "application/vnd.heroku+json; version=3")
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
+	req.Header.Set("User-Agent", c.UserAgent)
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
