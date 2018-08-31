@@ -10,9 +10,9 @@ Automated software delivery as fast and easy as possible. `rocket` is the `D` in
 
 1. [Installation](#installation)
 2. [Docker image](#docker-image)
-3. [Usage](#usage)
-4. [Documentation](#documentation)
-5. [Available providers](#available-providers)
+3. [Available providers](#available-providers)
+4. [Usage](#usage)
+5. [Documentation](#documentation)
 6. [Roadmap](#roadmap)
 
 -------------------
@@ -37,7 +37,34 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 ## Docker image
 
-`astrocorp/rocket`
+[astrocorp/rocket](https://hub.docker.com/r/astrocorp/rocket)
+
+
+
+
+## Available providers
+
+:heavy_check_mark: = Done :construction: = in progress :clock1: = planned
+
+| Provider              | Status | Documentation |
+| --------------------- | -------| ------------- |
+| [AWS S3](https://aws.amazon.com/s3) `aws_s3` | 🚧 | [docs](https://astrocorp.net/rocket/aws_s3) |
+| Custom script `script` | ✅| [docs](https://astrocorp.net/rocket/custom_script) |
+| [Docker](https://www.docker.com) `docker` | ✔ | [docs](https://astrocorp.net/rocket/docker) |
+| [Google Firebase](https://firebase.google.com) `firebase` | 🕐 | - |
+| [Google Cloud Storage](https://cloud.google.com/storage) `gcs` | 🕐 | - |
+| [GitHub releases](https://help.github.com/categories/releases) `github_releases` | ✔ | [docs](https://astrocorp.net/rocket/github_releases) |
+| [Heroku](https://www.heroku.com) `heroku` | ✔ | [docs](https://astrocorp.net/rocket/heroku) |
+| [Netlify](https://www.netlify.com) `netlify` | 🕐 | - |
+| [NPM](https://www.npmjs.com) `npm` | 🕐 | - |
+| [SCP](https://en.wikipedia.org/wiki/Secure_copy) `scp` | 🕐 | - |
+| [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) `sftp` | 🕐 | - |
+| [SSH](https://en.wikipedia.org/wiki/Secure_Shell) `ssh` | 🕐 | - |
+
+✔ = Done 🚧 = in progress 🕐 = planned
+
+
+
 
 
 ## Usage
@@ -91,25 +118,6 @@ See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
 
 
 
-
-## Available providers
-
-| Provider              | Status | Documentation |
-| --------------------- | -------| ------------- |
-| [AWS S3](https://aws.amazon.com/s3) `aws_s3` | :construction: | [docs](https://astrocorp.net/rocket/aws_s3) |
-| Custom script `script` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/custom_script) |
-| [Docker](https://www.docker.com) `docker` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/docker) |
-| [Google Firebase](https://firebase.google.com) `firebase` | :clock1: | - |
-| [Google Cloud Storage](https://cloud.google.com/storage) `gcs` | :clock1: | - |
-| [GitHub releases](https://help.github.com/categories/releases) `github_releases` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/github_releases) |
-| [Heroku](https://www.heroku.com) `heroku` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/heroku) |
-| [Netlify](https://www.netlify.com) `netlify` | :clock1: | - |
-| [NPM](https://www.npmjs.com) `npm` | :clock1: | - |
-| [SCP](https://en.wikipedia.org/wiki/Secure_copy) `scp` | :clock1: | - |
-| [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) `sftp` | :clock1: | - |
-| [SSH](https://en.wikipedia.org/wiki/Secure_Shell) `ssh` | :clock1: | - |
-
-:heavy_check_mark: = Done :construction: = in progress :clock1: = planned
 
 
 ## Roadmap
