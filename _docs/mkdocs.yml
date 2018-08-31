@@ -7,6 +7,7 @@ theme:
 
 nav:
   - index.md
+  - aws_s3.md
   - custom_script.md
   - docker.md
   - github_releases.md
