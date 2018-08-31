@@ -6,7 +6,7 @@
 [![Docker image](https://img.shields.io/badge/docker-astrocorp/rocket-blue.svg)](https://hub.docker.com/r/astrocorp/rocket)
 
 
-Automated deployment as fast and easy as possible. `rocket` is the `D` in CI/CD: It allows to easily deploy software across a large range of providers from any CI/CD pipeline.
+Automated software delivery as fast and easy as possible. `rocket` is the `D` in CI/CD: It allows to easily deliver software to a large range of providers from any CI/CD pipeline.
 
 1. [Installation](#installation)
 2. [Docker image](#docker-image)
@@ -49,7 +49,7 @@ $ rocket init # create a configuration .rocket.toml file with default configurat
 $ cat .rocket.toml
 ```
 ```toml
-description = "This is a configuration file for rocket: Automated deployment as fast and easy as possible. See https://github.com/astrocorp42/rocket"
+description = "This is a configuration file for rocket: Automated software delivery as fast and easy as possible. See https://github.com/astrocorp42/rocket"
 
 [github_releases]
 assets = [
@@ -66,7 +66,7 @@ See [https://github.com/astrocorp42/rocket/blob/master/.rocket.toml](https://git
 Help
 ```bash
 $ rocket help
-Automated deployment as fast and easy as possible. rocket is the D in CI/CD. See https://github.com/astrocorp42/rocket
+Automated software delivery as fast and easy as possible. rocket is the D in CI/CD. See https://github.com/astrocorp42/rocket
 
 Usage:
   rocket [flags]

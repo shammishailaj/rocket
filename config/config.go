@@ -90,7 +90,7 @@ func fileExists(path string) bool {
 func Default() Config {
 	var ret Config
 
-	ret.Description = "This is a configuration file for rocket: automated deployment as fast and easy as possible. " +
+	ret.Description = "This is a configuration file for rocket: automated software delivery as fast and easy as possible. " +
 		"See https://github.com/astrocorp42/rocket"
 
 	return ret
