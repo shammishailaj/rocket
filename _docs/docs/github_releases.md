@@ -11,6 +11,8 @@
 | `api_key` | `string` | **$GITHUB_API_KEY** | The required GitHub API key |
 | `assets` | `[string]` | `[]` | The assets to upload following the [`go` glob pattern](https://golang.org/pkg/path/filepath/#Match) |
 | `tag` | `string` | **$ROCKET_LAST_TAG** | The `git` tag to release |
+| `base_url` | `string` | **$GITHUB_BASE_URL** | Used to release to GitHub Entreprise |
+| `upload_url` | `string` | `base_url` | Used to release to GitHub Entreprise, **`base_url`, should be set, error otherwise** |
 
 
 ## Example

@@ -77,8 +77,28 @@ func Deploy(conf config.GitHubReleasesConfig) error {
 	if conf.Assets == nil {
 		conf.Assets = []string{}
 	}
+
+	if conf.BaseURL == nil {
+		v := os.Getenv("GITHUB_BASE_URL")
+		conf.BaseURL = &v
+	} else {
+		v := config.ExpandEnv(*conf.BaseURL)
+		conf.BaseURL = &v
+	}
+
+	if conf.UploadURL == nil {
+		v := os.Getenv("GITHUB_UPLOAD_URL")
+		conf.UploadURL = &v
+	} else {
+		conf.UploadURL = conf.BaseURL
+	}
+
+	if *conf.UploadURL != "" && *conf.BaseURL == "" {
+		return errors.New("github: base_url should not be empty when upload_url is set")
+	}
+
 	repo, _ := parseRepo(*conf.Repo)
-	client, err := NewClient(*conf.APIKey)
+	client, err := NewClient(*conf.APIKey, *conf.BaseURL, *conf.UploadURL)
 	if err != nil {
 		return err
 	}
@@ -120,13 +140,20 @@ func Deploy(conf config.GitHubReleasesConfig) error {
 }
 
 // NewClient create a GitHubClient instance with the given authentication information
-func NewClient(token string) (GitHubClient, error) {
+func NewClient(token, baseURL, uploadURL string) (GitHubClient, error) {
 	var err error
+	var client *github.Client
 
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: token},
 	)
-	client := github.NewClient(oauth2.NewClient(context.Background(), ts))
+	oauthClient := oauth2.NewClient(context.Background(), ts)
+
+	if baseURL == "" {
+		client = github.NewClient(oauthClient)
+	} else {
+		client, err = github.NewEnterpriseClient(baseURL, uploadURL, oauthClient)
+	}
 
 	return GitHubClient{client}, err
 }

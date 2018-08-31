@@ -49,6 +49,8 @@ type GitHubReleasesConfig struct {
 	APIKey     *string  `json:"api_key" toml:"api_key"`
 	Assets     []string `json:"assets" toml:"assets"`
 	Tag        *string  `json:"tag" toml:"tag"`
+	BaseURL    *string  `json:"base_url" toml:"base_url"`
+	UploadURL  *string  `json:"upload_url" toml:"upload_url"`
 }
 
 // DockerConfig is the configration for the docker provider
