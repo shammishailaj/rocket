@@ -96,7 +96,7 @@ See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
 
 | Provider              | Status | Documentation |
 | --------------------- | -------| ------------- |
-| [AWS S3](https://aws.amazon.com/s3) `s3` | :construction: | [docs](https://astrocorp.net/rocket/aws_s3) |
+| [AWS S3](https://aws.amazon.com/s3) `aws_s3` | :construction: | [docs](https://astrocorp.net/rocket/aws_s3) |
 | Custom script `script` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/custom_script) |
 | [Docker](https://www.docker.com) `docker` | :heavy_check_mark: | [docs](https://astrocorp.net/rocket/docker) |
 | [Google Firebase](https://firebase.google.com) `firebase` | :clock1: | - |
