@@ -3,9 +3,9 @@ FROM alpine:latest
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh-client ca-certificates
 
-RUN adduser -D -g '' rocket
+RUN adduser -D -g '' astrocorp
 
-USER rocket
+USER astrocorp
 
 WORKDIR /rocket
 
