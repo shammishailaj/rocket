@@ -46,6 +46,7 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 | Provider              | Status | Documentation |
 | --------------------- | -------| ------------- |
+| [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) `aws_eb` | 🕐 | - |
 | [AWS S3](https://aws.amazon.com/s3) `aws_s3` | 🚧 | [docs](https://astrocorp.net/rocket/aws_s3) |
 | Custom script `script` | ✔ | [docs](https://astrocorp.net/rocket/custom_script) |
 | [Docker](https://www.docker.com) `docker` | ✔ | [docs](https://astrocorp.net/rocket/docker) |
@@ -58,6 +59,7 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 | [SCP](https://en.wikipedia.org/wiki/Secure_copy) `scp` | 🕐 | - |
 | [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) `sftp` | 🕐 | - |
 | [SSH](https://en.wikipedia.org/wiki/Secure_Shell) `ssh` | 🕐 | - |
+| [ZEIT Now](https://zeit.co/now) `zeit_now` | 🕐 | - |
 
 ✔ = Done 🚧 = in progress 🕐 = planned
 
