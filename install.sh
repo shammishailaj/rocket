@@ -53,7 +53,7 @@ execute() {
   echo "export PATH=\"\$PATH:$BINDIR\" >> $HOME/.profile"
   echo "export PATH=\"\$PATH:$BINDIR\"" >> $HOME/.profile
 
-  echo "\n$PREFIX: install finished. Use 'export PATH=\"\$PATH:$BINDIR\"' to use $BINARY in the current shell session"
+  echo -e "\n$PREFIX: install finished. Use 'export PATH=\"\$PATH:$BINDIR\"' to use $BINARY in the current shell session"
 }
 is_supported_platform() {
   platform=$1
