@@ -88,7 +88,7 @@ func Deploy(conf config.HerokuConfig) error {
 
 	if conf.APIKey == nil {
 		v := os.Getenv("HEROKU_API_KEY")
-		conf.App = &v
+		conf.APIKey = &v
 	} else {
 		v := config.ExpandEnv(*conf.APIKey)
 		conf.APIKey = &v
@@ -96,7 +96,7 @@ func Deploy(conf config.HerokuConfig) error {
 
 	if conf.Directory == nil {
 		v := "."
-		conf.App = &v
+		conf.Directory = &v
 	} else {
 		v := config.ExpandEnv(*conf.Directory)
 		conf.Directory = &v
