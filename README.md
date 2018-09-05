@@ -1,12 +1,17 @@
-# Rocket
+<p align="center">
+  <img alt="rocket logo" src="imgs/rocket.jpg" height="180" />
+  <h3 align="center">Rocket</h3>
+  <p align="center">Automated software delivery as fast and easy as possible</p>
+</p>
+
+--------
 
 [![GoDoc](https://godoc.org/github.com/astrocorp42/rocket?status.svg)](https://godoc.org/github.com/astrocorp42/rocket)
 [![GitHub release](https://img.shields.io/github/release/astrocorp42/rocket.svg)](https://github.com/astrocorp42/rocket/releases/latest)
 [![Build Status](https://travis-ci.org/astrocorp42/rocket.svg?branch=master)](https://travis-ci.org/astrocorp42/rocket)
 [![Docker image](https://img.shields.io/badge/docker-astrocorp/rocket-blue.svg)](https://hub.docker.com/r/astrocorp/rocket)
 
-
-Automated software delivery as fast and easy as possible. `rocket` is the `D` in CI/CD: It allows to easily deliver software to a large range of providers from any CI/CD pipeline.
+`rocket` is the `D` in CI/CD: It allows to easily deliver software to a large range of providers from any CI/CD pipeline.
 
 1. [Installation](#installation)
 2. [Docker image](#docker-image)

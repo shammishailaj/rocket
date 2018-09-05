@@ -1,3 +1,10 @@
+<p align="center">
+  <img alt="rocket logo" src="imgs/rocket.jpg" height="180" />
+  <h3 align="center">Rocket</h3>
+  <p align="center">Automated software delivery as fast and easy as possible</p>
+</p>
+---
+
 # Introduction
 
 `rocket` is a software delivery automation tool. It's the `D` in`CI/CD`. The goal is to provide an easy
