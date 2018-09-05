@@ -1,7 +1,12 @@
 package zeitnow
 
 import (
+	"bytes"
+	"crypto/sha1"
+	"encoding/json"
+	"errors"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 
@@ -16,6 +21,25 @@ type Client struct {
 	Token     string
 	HTTP      *http.Client
 	UserAgent string
+}
+
+type File struct {
+	File string `json:"file"`
+	SHA  string `json:"sha"`
+	Size uint64 `json:"size"`
+}
+
+type DeploymentRequest struct {
+	Env               map[string]string `json:"env,omitempty"`
+	Public            bool              `json:"public"`
+	ForceNew          *bool             `json:"forceNew,omitempty"`
+	Name              string            `json:"name"`
+	DeploymentType    string            `json:"deploymentType"`
+	RegistryAuthToken *string           `json:"registryAuthToken,omitempty"`
+	Files             []File            `json:"files"`
+	Engines           map[string]string `json:"engines,omitempty"`
+	SessionAffinity   *string           `json:"sessionAffinity,omitempty"`
+	Config            map[string]string `json:"config,omitempty"`
 }
 
 func Deploy(conf config.ZeitNowConfig) error {
@@ -35,7 +59,8 @@ func Deploy(conf config.ZeitNowConfig) error {
 		conf.Directory = &v
 	}
 
-	_ = NewClient(*conf.Token)
+	client := NewClient(*conf.Token)
+	filesToDeploy := []File{}
 
 	walker, _ := fswalk.NewWalker()
 	filesc, _ := walker.Walk(*conf.Directory)
@@ -44,11 +69,99 @@ func Deploy(conf config.ZeitNowConfig) error {
 			continue
 		}
 		log.With("file", file.Path).Debug("zeit_now: file to upload")
+		f, err := client.UploadFile(file.Path)
+		if err != nil {
+			log.With("file", file.Path).Error(fmt.Sprintf("zeit_now: error uploading a file: %s", err.Error()))
+		} else {
+			log.With("file", file.Path).Info("zeit_now: file successfully uploaded")
+			filesToDeploy = append(filesToDeploy, f)
+		}
 	}
 
-	return nil
+	log.With("files", filesToDeploy).Debug("zeit_npw: creating deployment")
+	return client.CreateDeployment(filesToDeploy)
 }
 
 func NewClient(token string) Client {
 	return Client{token, &http.Client{}, fmt.Sprintf("rocket/%s", version.Version)}
+}
+
+func (c *Client) UploadFile(file string) (File, error) {
+	var ret File
+
+	data, err := ioutil.ReadFile(file)
+	if err != nil {
+		return ret, err
+	}
+	reader := bytes.NewReader(data)
+
+	h := sha1.New()
+	h.Write(data)
+	sum := h.Sum(nil)
+
+	ret.SHA = fmt.Sprintf("%x", sum)
+	ret.Size = uint64(len(data))
+	ret.File = file
+	sizeStr := fmt.Sprintf("%d", ret.Size)
+
+	req, err := http.NewRequest("POST", "https://api.zeit.co/v2/now/files", reader)
+	req.Header.Set("Content-Type", "application/octet-stream")
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.Token))
+	req.Header.Set("User-Agent", c.UserAgent)
+	req.Header.Set("Content-Length", sizeStr)
+	req.Header.Set("x-now-digest", ret.SHA)
+	req.Header.Set("x-now-size", sizeStr)
+	resp, err := c.HTTP.Do(req)
+	if err != nil {
+		return ret, err
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return ret, err
+	}
+	if len(body) != 2 {
+		return ret, errors.New(string(body))
+	}
+
+	return ret, nil
+}
+
+func (c *Client) CreateDeployment(files []File) error {
+	forceNew := true
+	sessionAffinity := "ip"
+
+	request := DeploymentRequest{
+		Public:          true,
+		DeploymentType:  "NPM",
+		ForceNew:        &forceNew,
+		Files:           files,
+		Name:            "my-instant-deployment",
+		Engines:         map[string]string{"node": "^8.0.0"},
+		SessionAffinity: &sessionAffinity,
+	}
+
+	jsonToPost, err := json.Marshal(request)
+	if err != nil {
+		return err
+	}
+	log.With("request", string(jsonToPost)).Debug("zeit_now: create deployment request")
+
+	req, err := http.NewRequest("POST", "https://api.zeit.co/v3/now/deployments", bytes.NewReader(jsonToPost))
+	req.Header.Set("Content-Type", "Content-Type: application/json")
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.Token))
+	req.Header.Set("User-Agent", c.UserAgent)
+	resp, err := c.HTTP.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	log.With("response", string(body)).Debug("zeit_now: create deployment response received")
+
+	return nil
 }
