@@ -29,6 +29,7 @@ type Config struct {
 	Heroku         *HerokuConfig         `json:"heroku,omitempty" toml:"heroku,omitempty"`
 	GitHubReleases *GitHubReleasesConfig `json:"github_releases,omitempty" toml:"github_releases,omitempty"`
 	Docker         *DockerConfig         `json:"docker" toml:"docker"`
+	AWSS3          *AWSS3Config          `json:"aws_s3" toml:"aws_s3"`
 }
 
 // ScriptConfig is the configration for the script provider
@@ -59,6 +60,16 @@ type DockerConfig struct {
 	Password *string  `josn:"password" toml:"password"`
 	Login    *bool    `json:"login" toml:"login"`
 	Images   []string `json:"images" toml:"images"`
+}
+
+// AWSS3Config is the configration for the aws_s3 provider
+type AWSS3Config struct {
+	AccessKeyID     *string `json:"access_key_id" toml:"access_key_id"`
+	SecretAccessKey *string `json:"secret_access_key" toml:"secret_access_key"`
+	Region          *string `json:"region" toml:"region"`
+	Bucket          *string `json:"bucket" toml:"bucket"`
+	LocalDirectory  *string `json:"local_directory" toml:"local_directory"`
+	RemoteDirectory *string `json:"remote_directory" toml:"remote_directory"`
 }
 
 // ExpandEnv 'fix' os.ExpandEnv by allowing to use $$ to escape a dollar e.g: $$HOME -> $HOME

@@ -3,6 +3,7 @@ module github.com/astrocorp42/rocket
 require (
 	github.com/BurntSushi/toml v0.3.0
 	github.com/astroflow/astroflow-go v0.6.3
+	github.com/aws/aws-sdk-go v1.15.27
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/golang/protobuf v1.2.0 // indirect
 	github.com/google/go-github v17.0.0+incompatible

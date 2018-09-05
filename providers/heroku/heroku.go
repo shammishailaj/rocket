@@ -121,7 +121,7 @@ func Deploy(conf config.HerokuConfig) error {
 	tw := tar.NewWriter(gw)
 
 	walker, _ := fswalk.NewWalker()
-	filesc, _ := walker.Walk(".")
+	filesc, _ := walker.Walk(*conf.Directory)
 	for file := range filesc {
 		if file.Path == "." || file.IsDir || file.IsSymLink {
 			continue

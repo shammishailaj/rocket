@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/astrocorp42/rocket/config"
+	"github.com/astrocorp42/rocket/providers/awss3"
 	"github.com/astrocorp42/rocket/providers/docker"
 	"github.com/astrocorp42/rocket/providers/ghreleases"
 	"github.com/astrocorp42/rocket/providers/heroku"
@@ -95,6 +96,17 @@ var RocketCmd = &cobra.Command{
 			}
 		} else {
 			log.Debug("docker: provider is empty")
+		}
+
+		// aws_s3
+		if conf.AWSS3 != nil {
+			log.Debug("aws_s3: starting provider")
+			err = awss3.Deploy(*conf.AWSS3)
+			if err != nil {
+				log.Fatal(fmt.Sprintf("aws_s3: %v", err))
+			}
+		} else {
+			log.Debug("aws_s3: provider is empty")
 		}
 	},
 }
