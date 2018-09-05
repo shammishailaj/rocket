@@ -74,6 +74,8 @@ func Deploy(conf config.AWSS3Config) error {
 		err = UploadFileToS3(conf, sess, file.Path)
 		if err != nil {
 			log.With("file", file.Path).Error(fmt.Sprintf("aws_s3: error uploading a file: %s", err.Error()))
+		} else {
+			log.With("file", file.Path).Info("aws_s3: file successfully uploaded")
 		}
 	}
 	return nil

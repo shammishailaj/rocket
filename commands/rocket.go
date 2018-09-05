@@ -11,6 +11,7 @@ import (
 	"github.com/astrocorp42/rocket/providers/ghreleases"
 	"github.com/astrocorp42/rocket/providers/heroku"
 	"github.com/astrocorp42/rocket/providers/script"
+	"github.com/astrocorp42/rocket/providers/zeitnow"
 	"github.com/astroflow/astroflow-go"
 	"github.com/astroflow/astroflow-go/log"
 	"github.com/spf13/cobra"
@@ -107,6 +108,17 @@ var RocketCmd = &cobra.Command{
 			}
 		} else {
 			log.Debug("aws_s3: provider is empty")
+		}
+
+		// zeit_now
+		if conf.ZeitNow != nil {
+			log.Debug("zeit_now: starting provider")
+			err = zeitnow.Deploy(*conf.ZeitNow)
+			if err != nil {
+				log.Fatal(fmt.Sprintf("zeit_now: %v", err))
+			}
+		} else {
+			log.Debug("zeit_now: provider is empty")
 		}
 	},
 }

@@ -30,6 +30,7 @@ type Config struct {
 	GitHubReleases *GitHubReleasesConfig `json:"github_releases,omitempty" toml:"github_releases,omitempty"`
 	Docker         *DockerConfig         `json:"docker" toml:"docker"`
 	AWSS3          *AWSS3Config          `json:"aws_s3" toml:"aws_s3"`
+	ZeitNow        *ZeitNowConfig        `json:"zeit_now" toml:"zeit_now"`
 }
 
 // ScriptConfig is the configration for the script provider
@@ -70,6 +71,11 @@ type AWSS3Config struct {
 	Bucket          *string `json:"bucket" toml:"bucket"`
 	LocalDirectory  *string `json:"local_directory" toml:"local_directory"`
 	RemoteDirectory *string `json:"remote_directory" toml:"remote_directory"`
+}
+
+type ZeitNowConfig struct {
+	Token     *string `json:"token" toml:"token"`
+	Directory *string `json:"directory" toml:"directory"`
 }
 
 // ExpandEnv 'fix' os.ExpandEnv by allowing to use $$ to escape a dollar e.g: $$HOME -> $HOME
