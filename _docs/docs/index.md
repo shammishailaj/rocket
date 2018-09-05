@@ -63,7 +63,7 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 | [SCP](https://en.wikipedia.org/wiki/Secure_copy) `scp` | 🕐 | - |
 | [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) `sftp` | 🕐 | - |
 | [SSH](https://en.wikipedia.org/wiki/Secure_Shell) `ssh` | 🕐 | - |
-| [ZEIT Now](https://zeit.co/now) `zeit_now` | 🚧 | - |
+| [ZEIT Now](https://zeit.co/now) `zeit_now` | 🚧 | [docs](https://astrocorp.net/rocket/zeit_now) |
 
 ✔ = Done 🚧 = in progress 🕐 = planned
 

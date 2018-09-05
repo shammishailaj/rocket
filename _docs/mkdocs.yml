@@ -12,6 +12,7 @@ nav:
   - docker.md
   - github_releases.md
   - heroku.md
+  - zeit_now.md
 
 google_analytics:
   - 'UA-123569541-1'
