@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/astrocorp42/rocket/config"
 	"github.com/astrocorp42/rocket/version"
@@ -21,6 +22,7 @@ type Client struct {
 	Token     string
 	HTTP      *http.Client
 	UserAgent string
+	Config    config.ZeitNowConfig
 }
 
 type File struct {
@@ -59,7 +61,51 @@ func Deploy(conf config.ZeitNowConfig) error {
 		conf.Directory = &v
 	}
 
-	client := NewClient(*conf.Token)
+	if conf.Env == nil {
+		v := map[string]string{}
+		conf.Env = v
+	}
+
+	if conf.Public == nil {
+		v := false
+		conf.Public = &v
+	}
+
+	if conf.DeploymentType == nil {
+		v := "NPM"
+		conf.DeploymentType = &v
+	} else {
+		v := config.ExpandEnv(*conf.DeploymentType)
+		conf.DeploymentType = &v
+	}
+
+	if conf.Name == nil {
+		v := os.Getenv("ZEIT_NOW_NAME")
+		conf.Name = &v
+	} else {
+		v := config.ExpandEnv(*conf.Name)
+		conf.Name = &v
+	}
+
+	if conf.ForceNew == nil {
+		v := true
+		conf.ForceNew = &v
+	}
+
+	if conf.Engines == nil {
+		v := map[string]string{}
+		conf.Engines = v
+	}
+
+	if conf.SessionAffinity == nil {
+		v := "ip"
+		conf.SessionAffinity = &v
+	} else {
+		v := config.ExpandEnv(*conf.SessionAffinity)
+		conf.SessionAffinity = &v
+	}
+
+	client := NewClient(conf, *conf.Token)
 	filesToDeploy := []File{}
 
 	walker, _ := fswalk.NewWalker()
@@ -73,17 +119,35 @@ func Deploy(conf config.ZeitNowConfig) error {
 		if err != nil {
 			log.With("file", file.Path).Error(fmt.Sprintf("zeit_now: error uploading a file: %s", err.Error()))
 		} else {
-			log.With("file", file.Path).Info("zeit_now: file successfully uploaded")
+			log.Info(fmt.Sprintf("zeit_now: file successfully uploaded %s", file.Path))
 			filesToDeploy = append(filesToDeploy, f)
 		}
 	}
 
-	log.With("files", filesToDeploy).Debug("zeit_npw: creating deployment")
-	return client.CreateDeployment(filesToDeploy)
+	log.With("files", filesToDeploy).Debug("zeit_now: creating deployment")
+	err := client.CreateDeployment(filesToDeploy)
+	if err != nil {
+		log.Error(fmt.Sprintf("zeit_now: error creating deployment  %v", err))
+	} else {
+		log.Info("zeit_now: deployment successfully created")
+	}
+	return err
 }
 
-func NewClient(token string) Client {
-	return Client{token, &http.Client{}, fmt.Sprintf("rocket/%s", version.Version)}
+func NewClient(conf config.ZeitNowConfig, token string) Client {
+	return Client{token, &http.Client{}, fmt.Sprintf("rocket/%s", version.Version), conf}
+}
+
+func cleanFilePath(filePath, base string) string {
+	if strings.Index(filePath, base) == 0 {
+		ret := strings.Replace(filePath, base, "", 1)
+		if string(ret[0]) == string(os.PathSeparator) {
+			return ret[1:]
+		} else {
+			return ret
+		}
+	}
+	return filePath
 }
 
 func (c *Client) UploadFile(file string) (File, error) {
@@ -101,7 +165,7 @@ func (c *Client) UploadFile(file string) (File, error) {
 
 	ret.SHA = fmt.Sprintf("%x", sum)
 	ret.Size = uint64(len(data))
-	ret.File = file
+	ret.File = cleanFilePath(file, *c.Config.Directory)
 	sizeStr := fmt.Sprintf("%d", ret.Size)
 
 	req, err := http.NewRequest("POST", "https://api.zeit.co/v2/now/files", reader)
@@ -120,7 +184,7 @@ func (c *Client) UploadFile(file string) (File, error) {
 	if err != nil {
 		return ret, err
 	}
-	if len(body) != 2 {
+	if resp.StatusCode != 200 {
 		return ret, errors.New(string(body))
 	}
 
@@ -128,17 +192,15 @@ func (c *Client) UploadFile(file string) (File, error) {
 }
 
 func (c *Client) CreateDeployment(files []File) error {
-	forceNew := true
-	sessionAffinity := "ip"
-
 	request := DeploymentRequest{
-		Public:          true,
-		DeploymentType:  "NPM",
-		ForceNew:        &forceNew,
+		Env:             c.Config.Env,
+		Public:          *c.Config.Public,
+		DeploymentType:  *c.Config.DeploymentType,
+		ForceNew:        c.Config.ForceNew,
 		Files:           files,
-		Name:            "my-instant-deployment",
-		Engines:         map[string]string{"node": "^8.0.0"},
-		SessionAffinity: &sessionAffinity,
+		Name:            *c.Config.Name,
+		Engines:         c.Config.Engines,
+		SessionAffinity: c.Config.SessionAffinity,
 	}
 
 	jsonToPost, err := json.Marshal(request)
@@ -148,7 +210,7 @@ func (c *Client) CreateDeployment(files []File) error {
 	log.With("request", string(jsonToPost)).Debug("zeit_now: create deployment request")
 
 	req, err := http.NewRequest("POST", "https://api.zeit.co/v3/now/deployments", bytes.NewReader(jsonToPost))
-	req.Header.Set("Content-Type", "Content-Type: application/json")
+	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.Token))
 	req.Header.Set("User-Agent", c.UserAgent)
 	resp, err := c.HTTP.Do(req)
@@ -162,6 +224,10 @@ func (c *Client) CreateDeployment(files []File) error {
 	}
 
 	log.With("response", string(body)).Debug("zeit_now: create deployment response received")
+
+	if resp.StatusCode != 200 {
+		return errors.New(string(body))
+	}
 
 	return nil
 }

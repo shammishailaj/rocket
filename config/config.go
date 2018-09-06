@@ -74,8 +74,15 @@ type AWSS3Config struct {
 }
 
 type ZeitNowConfig struct {
-	Token     *string `json:"token" toml:"token"`
-	Directory *string `json:"directory" toml:"directory"`
+	Token           *string           `json:"token" toml:"token"`
+	Directory       *string           `json:"directory" toml:"directory"`
+	Env             map[string]string `json:"env" toml:"env"`
+	Public          *bool             `json:"public" toml:"public"`
+	DeploymentType  *string           `json:"deployment_type" toml:"deployment_type"`
+	Name            *string           `json:"name" toml:"name"`
+	ForceNew        *bool             `json:"force_new" toml:"force_new"`
+	Engines         map[string]string `json:"engines" toml:"engines"`
+	SessionAffinity *string           `json:"session_affinity" toml:"session_affinity"`
 }
 
 // ExpandEnv 'fix' os.ExpandEnv by allowing to use $$ to escape a dollar e.g: $$HOME -> $HOME

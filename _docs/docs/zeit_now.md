@@ -14,6 +14,13 @@ It follows the below steps:
 | ----- | -----| ------------- |------------ |
 | `token` | `string` | **$ZEIT_TOKEN** | The zeit token to use |
 | `directory` | `string` | `"."` | The directory to upload |
+| `env` | `map[string]string` | `{}` | The environnement for the deployment |
+| `public` | `bool` | `false` | Whether the deployment is public or not |
+| `deployment_type` | `string` | `"NPM"` | see the zeit API [documentation](https://zeit.co/api#endpoints/deployments/create-a-new-deployment) |
+| `name` | `string` | **$ZEIT_NOW_NAME** | see the zeit API [documentation](https://zeit.co/api#endpoints/deployments/create-a-new-deployment) |
+| `force_new` | `bool` | `true` | see the zeit API [documentation](https://zeit.co/api#endpoints/deployments/create-a-new-deployment) |
+| `engines` | `map[string]string` | `{}` | see the zeit API [documentation](https://zeit.co/api#endpoints/deployments/create-a-new-deployment) |
+| `session_affinity` | `string` | `"ip"` | see the zeit API [documentation](https://zeit.co/api#endpoints/deployments/create-a-new-deployment) |
 
 
 ## Example
@@ -22,4 +29,8 @@ It follows the below steps:
 # .rocket.toml
 [zeit_now]
 directory = "dist"
+name = "my-app"
+engines =  { "node" = "^8.0.0" }
+env = { "NODE_ENV" = "production" }
+public = true
 ```
