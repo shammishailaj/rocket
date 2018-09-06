@@ -1,7 +1,5 @@
 <p align="center">
   <img alt="rocket logo" src="https://astrocorp.net/imgs/landing/rocket.png" height="180" />
-
-  <p align="center" style="font-size: 10px;">credit <a href="https://dribbble.com/yoga">@yoga</a></p>
   <h3 align="center">Rocket</h3>
   <p align="center">Automated software delivery as fast and easy as possible</p>
 </p>
