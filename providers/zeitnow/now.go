@@ -44,6 +44,14 @@ type DeploymentRequest struct {
 	Config            map[string]string `json:"config,omitempty"`
 }
 
+type CreateDeploymentResponse struct {
+	// TotalSize    int64         `json:"totalSize"`
+	DeploymentID string        `json:"deploymentId"`
+	URL          string        `json:"url"`
+	Warnings     []interface{} `json:"warnings"` // TODO: find the correct schema
+	//ReadyState string `json:"readyState"`
+}
+
 func Deploy(conf config.ZeitNowConfig) error {
 	if conf.Token == nil {
 		v := os.Getenv("ZEIT_TOKEN")
@@ -125,11 +133,11 @@ func Deploy(conf config.ZeitNowConfig) error {
 	}
 
 	log.With("files", filesToDeploy).Debug("zeit_now: creating deployment")
-	err := client.CreateDeployment(filesToDeploy)
+	depRes, err := client.CreateDeployment(filesToDeploy)
 	if err != nil {
 		log.Error(fmt.Sprintf("zeit_now: error creating deployment  %v", err))
 	} else {
-		log.Info("zeit_now: deployment successfully created")
+		log.Info(fmt.Sprintf("zeit_now: deployment successfully created %s", depRes.URL))
 	}
 	return err
 }
@@ -191,7 +199,9 @@ func (c *Client) UploadFile(file string) (File, error) {
 	return ret, nil
 }
 
-func (c *Client) CreateDeployment(files []File) error {
+func (c *Client) CreateDeployment(files []File) (CreateDeploymentResponse, error) {
+	var ret CreateDeploymentResponse
+
 	request := DeploymentRequest{
 		Env:             c.Config.Env,
 		Public:          *c.Config.Public,
@@ -205,7 +215,7 @@ func (c *Client) CreateDeployment(files []File) error {
 
 	jsonToPost, err := json.Marshal(request)
 	if err != nil {
-		return err
+		return ret, err
 	}
 	log.With("request", string(jsonToPost)).Debug("zeit_now: create deployment request")
 
@@ -215,19 +225,20 @@ func (c *Client) CreateDeployment(files []File) error {
 	req.Header.Set("User-Agent", c.UserAgent)
 	resp, err := c.HTTP.Do(req)
 	if err != nil {
-		return err
+		return ret, err
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return err
+		return ret, err
 	}
 
 	log.With("response", string(body)).Debug("zeit_now: create deployment response received")
 
 	if resp.StatusCode != 200 {
-		return errors.New(string(body))
+		return ret, errors.New(string(body))
 	}
 
-	return nil
+	err = json.Unmarshal(body, &ret)
+	return ret, err
 }
