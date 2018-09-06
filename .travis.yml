@@ -34,7 +34,6 @@ deploy:
   # use rocket to deploy itself :)
   script: dist/rocket
   on:
-    repo: astrocorp42/rocket
     tags: true # The deployment happens only if the commit has a tag
 
 notifications:
