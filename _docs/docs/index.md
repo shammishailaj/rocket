@@ -50,7 +50,7 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 | Provider              | Status | Documentation |
 | --------------------- | -------| ------------- |
-| [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) `aws_eb` | 🕐 | - |
+| [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) `aws_eb` | 🚧 | - |
 | [AWS S3](https://aws.amazon.com/s3) `aws_s3` | ✔ | [docs](https://astrocorp.net/rocket/aws_s3) |
 | Custom script `script` | ✔ | [docs](https://astrocorp.net/rocket/custom_script) |
 | [Docker](https://www.docker.com) `docker` | ✔ | [docs](https://astrocorp.net/rocket/docker) |
