@@ -1,4 +1,4 @@
-package eb
+package awseb
 
 import (
 	"archive/zip"
