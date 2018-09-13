@@ -58,7 +58,7 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 | [Google Cloud Storage](https://cloud.google.com/storage) `gcs` | 🕐 | - |
 | [GitHub releases](https://help.github.com/categories/releases) `github_releases` | ✔ | [docs](https://astrocorp.net/rocket/github_releases) |
 | [Heroku](https://www.heroku.com) `heroku` | ✔ | [docs](https://astrocorp.net/rocket/heroku) |
-| [Netlify](https://www.netlify.com) `netlify` | 🕐 | - |
+| [Netlify](https://www.netlify.com) `netlify` | 🚧 | - |
 | [NPM](https://www.npmjs.com) `npm` | 🕐 | - |
 | [SCP](https://en.wikipedia.org/wiki/Secure_copy) `scp` | 🕐 | - |
 | [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) `sftp` | 🕐 | - |
