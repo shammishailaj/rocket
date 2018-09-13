@@ -31,6 +31,7 @@ type Config struct {
 	Docker         *DockerConfig         `json:"docker" toml:"docker"`
 	AWSS3          *AWSS3Config          `json:"aws_s3" toml:"aws_s3"`
 	ZeitNow        *ZeitNowConfig        `json:"zeit_now" toml:"zeit_now"`
+	AWSEB          *AWSEBConfig          `json:"aws_eb" toml:"aws_eb"`
 }
 
 // ScriptConfig is the configration for the script provider

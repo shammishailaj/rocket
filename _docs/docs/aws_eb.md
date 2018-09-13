@@ -14,6 +14,15 @@ It will proceed the following steps:
 2. upload the `bundle.zip` to the given S3 bucket
 3. create a new Application version
 
+**Note**:  if `access_key_id` or `secret_access_key` is emtpy, even after environment expanded
+and default values filled, the `aws_s3` provider will use the *shared credentials file* (`~/.aws/credentials`)
+and if empty the *EC2 instance role credentials*.
+
+The recommend way is by setting the **$AWS_ACCESS_KEY_ID** and **$AWS_SECRET_ACCESS_KEY** environment
+variables.
+
+
+
 ## Fields
 
 
