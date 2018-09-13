@@ -36,6 +36,7 @@ type Config struct {
 // ScriptConfig is the configration for the script provider
 type ScriptConfig []string
 
+// HerokuConfig is the configuration for the `heroku` provider
 type HerokuConfig struct {
 	APIKey    *string `json:"api_key" toml:"api_key"`
 	App       *string `json:"app" toml:"app"`
@@ -43,6 +44,7 @@ type HerokuConfig struct {
 	Version   *string `json:"version" toml:"version"`
 }
 
+// GitHubReleasesConfig is the configuration for the `github_releases` provider
 type GitHubReleasesConfig struct {
 	Name       *string  `json:"name" toml:"name"`
 	Body       *string  `json:"body" toml:"body"`
@@ -73,6 +75,7 @@ type AWSS3Config struct {
 	RemoteDirectory *string `json:"remote_directory" toml:"remote_directory"`
 }
 
+// ZeitNowConfig is the configration for the `zeit_now` provider
 type ZeitNowConfig struct {
 	Token           *string           `json:"token" toml:"token"`
 	Directory       *string           `json:"directory" toml:"directory"`
@@ -83,6 +86,19 @@ type ZeitNowConfig struct {
 	ForceNew        *bool             `json:"force_new" toml:"force_new"`
 	Engines         map[string]string `json:"engines" toml:"engines"`
 	SessionAffinity *string           `json:"session_affinity" toml:"session_affinity"`
+}
+
+// AWSEBConfig is the configration for the `aws_eb` provider
+type AWSEBConfig struct {
+	AccessKeyID     *string `json:"access_key_id" toml:"access_key_id"`
+	SecretAccessKey *string `json:"secret_access_key" toml:"secret_access_key"`
+	Region          *string `json:"region" toml:"region"`
+	Application     *string `json:"application" toml:"application"`
+	Environment     *string `json:"environment" toml:"environment"`
+	S3Bucket        *string `json:"s3_bucket" toml:"s3_bucket"`
+	Version         *string `json:"version" toml:"version"`
+	Directory       *string `json:"directory" toml:"directory"`
+	S3Directory     *string `json:"s3_directory" toml:"s3_directory"`
 }
 
 // ExpandEnv 'fix' os.ExpandEnv by allowing to use $$ to escape a dollar e.g: $$HOME -> $HOME

@@ -8,7 +8,7 @@
 | ----- | -----| ------------- |------------ |
 | `api_key` | `string` | **$HEROKU_API_KEY** | The required Heroku API key |
 | `app` | `string` | **$HEROKU_APP** | The Heroku app to deploy |
-| `directory` | `string` | `"."` | The directory of your project (which will be tar gzipped and uploaded) |
+| `directory` | `string` | `"."` | The directory of your project (are files will be tar gzipped and uploaded) |
 | `version` | `string` | **$ROCKET_COMMIT_HASH** | The version of the app to release |
 
 
