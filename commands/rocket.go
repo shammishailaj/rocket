@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/astrocorp42/rocket/config"
+	"github.com/astrocorp42/rocket/providers/awseb"
 	"github.com/astrocorp42/rocket/providers/awss3"
 	"github.com/astrocorp42/rocket/providers/docker"
 	"github.com/astrocorp42/rocket/providers/ghreleases"
@@ -119,6 +120,17 @@ var RocketCmd = &cobra.Command{
 			}
 		} else {
 			log.Debug("zeit_now: provider is empty")
+		}
+
+		// aws_eb
+		if conf.ZeitNow != nil {
+			log.Debug("aws_eb: starting provider")
+			err = awseb.Deploy(*conf.AWSEBConfig)
+			if err != nil {
+				log.Fatal(fmt.Sprintf("aws_eb: %v", err))
+			}
+		} else {
+			log.Debug("aws_eb: provider is empty")
 		}
 	},
 }
