@@ -6,7 +6,6 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
-	"path/filepath"
 
 	"github.com/astrocorp42/rocket/config"
 	"github.com/astroflow/astroflow-go/log"
@@ -205,7 +204,7 @@ func uploadFileToS3(conf config.AWSEBConfig, s *session.Session, filePath string
 	// of the file you're uploading.
 	_, err = s3.New(s).PutObject(&s3.PutObjectInput{
 		Bucket: aws.String(*conf.S3Bucket),
-		Key:    aws.String(filepath.Join(*conf.S3Directory, filepath.Base(filePath))),
+		Key:    aws.String(*conf.S3Key),
 		Body:   file,
 	})
 	return err
