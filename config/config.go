@@ -99,7 +99,7 @@ type AWSEBConfig struct {
 	S3Bucket        *string `json:"s3_bucket" toml:"s3_bucket"`
 	Version         *string `json:"version" toml:"version"`
 	Directory       *string `json:"directory" toml:"directory"`
-	S3Directory     *string `json:"s3_directory" toml:"s3_directory"`
+	S3Key           *string `json:"s3_key" toml:"s3_key"`
 }
 
 // ExpandEnv 'fix' os.ExpandEnv by allowing to use $$ to escape a dollar e.g: $$HOME -> $HOME

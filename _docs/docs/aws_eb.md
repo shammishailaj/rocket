@@ -36,7 +36,7 @@ variables.
 | `s3_bucket` | `string` | **$AWS_S3_BUCKET** | The S3 bucket to upload the bundle to (MUST be the same region as the `eb` application) |
 | `version` | `string` | **$ROCKET_COMMIT_HASH** | The version of the applicaiton to release |
 | `directory` | `string` | `"."` | The directory of your project (files will be zipped and uploaded) |
-| `s3_directory` | `string` | `"/"` | The base S3 directory to upload the bundle to |
+| `s3_key` | `string` | /**${AWS_EB_APPLICATION}**\_**${AWS_EB_ENVIRONMENT}**\_**${ROCKET_COMMIT_HASH}**.zip | The S3 key to upload the bundle to |
 
 ## Example
 

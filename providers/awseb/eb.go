@@ -83,9 +83,13 @@ func Deploy(conf config.AWSEBConfig) error {
 		conf.Directory = &v
 	}
 
-	if conf.S3Directory == nil {
-		v := "/"
-		conf.S3Directory = &v
+	if conf.S3Key == nil {
+		str := "/${AWS_EB_APPLICATION}_${AWS_EB_ENVIRONMENT}_${ROCKET_COMMIT_HASH}.zip"
+		v := config.ExpandEnv(str)
+		conf.S3Key = &v
+	} else {
+		v := config.ExpandEnv(*conf.S3Key)
+		conf.S3Key = &v
 	}
 
 	var awsConf aws.Config
@@ -134,7 +138,7 @@ func Deploy(conf config.AWSEBConfig) error {
 	if err != nil {
 		log.With("file", tmpFile.Name()).Error(fmt.Sprintf("aws_eb: error uploading a file to S3: %s", err.Error()))
 	} else {
-		log.Info(fmt.Sprintf("aws_eb: file successfully uploaded to S3%s", tmpFile.Name()))
+		log.Info(fmt.Sprintf("aws_eb: file successfully uploaded to S3 %s", *conf.S3Key))
 	}
 
 	// 3) create a new EB application version
@@ -145,13 +149,18 @@ func Deploy(conf config.AWSEBConfig) error {
 		Process:               aws.Bool(true),
 		SourceBundle: &elasticbeanstalk.S3Location{
 			S3Bucket: aws.String(*conf.S3Bucket),
-			S3Key:    aws.String(filepath.Join(*conf.S3Directory, filepath.Base(tmpFile.Name()))),
+			S3Key:    aws.String(*conf.S3Key),
 		},
 		VersionLabel: aws.String(*conf.Version),
 	}
 
 	_, err = svc.CreateApplicationVersion(input)
-	return err
+	if err != nil {
+		return err
+	}
+
+	log.Info("aws_eb: new application version successfully created")
+	return nil
 }
 
 func addFileToBundle(zw *zip.Writer, path string) error {
