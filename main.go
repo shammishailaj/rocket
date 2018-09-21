@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/astrocorp42/rocket/commands"
 	rlog "github.com/astrocorp42/rocket/log"
-	"github.com/astroflow/astroflow-go"
-	"github.com/astroflow/astroflow-go/log"
+	"github.com/astrocorp42/astroflow-go"
+	"github.com/astrocorp42/astroflow-go/log"
 )
 
 func main() {

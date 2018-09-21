@@ -7,8 +7,8 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/astrocorp42/rocket/config"
-	"github.com/astroflow/astroflow-go"
-	"github.com/astroflow/astroflow-go/log"
+	"github.com/astrocorp42/astroflow-go"
+	"github.com/astrocorp42/astroflow-go/log"
 	"github.com/spf13/cobra"
 )
 

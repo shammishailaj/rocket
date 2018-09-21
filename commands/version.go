@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/astrocorp42/rocket/version"
-	"github.com/astroflow/astroflow-go/log"
+	"github.com/astrocorp42/astroflow-go/log"
 	"github.com/spf13/cobra"
 )
 

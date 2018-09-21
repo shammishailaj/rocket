@@ -13,8 +13,8 @@ import (
 	"github.com/astrocorp42/rocket/providers/heroku"
 	"github.com/astrocorp42/rocket/providers/script"
 	"github.com/astrocorp42/rocket/providers/zeitnow"
-	"github.com/astroflow/astroflow-go"
-	"github.com/astroflow/astroflow-go/log"
+	"github.com/astrocorp42/astroflow-go"
+	"github.com/astrocorp42/astroflow-go/log"
 	"github.com/spf13/cobra"
 )
 
