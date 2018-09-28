@@ -16,8 +16,9 @@
 
 ```san
 # .rocket.san
-[heroku]
-app = "my-awesome-heroku-app"
-api_key = "$HEROKU_TOKEN"
-directory = "."
+heroku = {
+  app = "my-awesome-heroku-app"
+  api_key = "$HEROKU_TOKEN"
+  directory = "."
+}
 ```

@@ -19,10 +19,11 @@
 
 ```san
 # .rocket.san
-[github_releases]
-api_key = "$GITHUB_TOKEN"
-assets = [
-  "dist/*.zip",
-  "dist/rocket_*_sha512sums.txt",
-]
+github_releases = {
+  api_key = "$GITHUB_TOKEN"
+  assets = [
+    "dist/*.zip",
+    "dist/rocket_*_sha512sums.txt",
+  ]
+}
 ```

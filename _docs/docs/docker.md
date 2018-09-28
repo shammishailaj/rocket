@@ -22,13 +22,14 @@ so this provider is just a wrapper around the `docker` CLI which should be insta
 
 ```san
 # .rocket.san
-[docker]
-username = "$MY_DOCKER_USERNAME"
-password = "$MY_DOCKER_PASSWORD"
-# images to push
-images = [
-  "astrocorp/rocket:lastest",
-  "my-custom-registry/org/image:my-tag",
-  "my-custom-registry/org/image:$VERSION", # we use env vars here
-]
+docker = {
+  username = "$MY_DOCKER_USERNAME"
+  password = "$MY_DOCKER_PASSWORD"
+  # images to push
+  images = [
+    "astrocorp/rocket:lastest",
+    "my-custom-registry/org/image:my-tag",
+    "my-custom-registry/org/image:$VERSION", # we use env vars here
+  ]
+}
 ```

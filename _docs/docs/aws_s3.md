@@ -27,8 +27,9 @@ variables.
 
 ```san
 # .rocket.san
-[aws_s3]
-region = $MY_AWS_S3_REGION
-bucket = "my-bucket"
-remote_directory = "/my/app/directory"
+aws_s3 = {
+  region = "$MY_AWS_S3_REGION"
+  bucket = "my-bucket"
+  remote_directory = "/my/app/directory"
+}
 ```

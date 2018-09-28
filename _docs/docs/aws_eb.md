@@ -42,7 +42,9 @@ variables.
 
 ```san
 # .rocket.san
-application = "myapp"
-environment = "myapp-production"
-s3_bucket = "mybucket"
+aws_eb = {
+  application = "myapp"
+  environment = "myapp-production"
+  s3_bucket = "mybucket"
+}
 ```

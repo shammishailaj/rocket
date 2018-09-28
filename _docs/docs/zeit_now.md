@@ -27,10 +27,11 @@ It follows the below steps:
 
 ```san
 # .rocket.san
-[zeit_now]
-directory = "dist"
-name = "my-app"
-engines =  { "node" = "^8.0.0" }
-env = { "NODE_ENV" = "production" }
-public = true
+zeit_now = {
+  directory = "dist"
+  name = "my-app"
+  engines =  { "node" = "^8.0.0" }
+  env = { "NODE_ENV" = "production" }
+  public = true
+}
 ```
