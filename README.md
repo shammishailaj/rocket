@@ -74,7 +74,7 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 ## Usage
 
-`rocket` use [SAN](https://astrocorp.net/san) file for it's configuration.
+`rocket` use [SAN](https://astrocorp.net/san) as configuration format.
 
 Go to your project's root directory then
 ```bash
