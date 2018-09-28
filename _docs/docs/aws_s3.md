@@ -25,8 +25,8 @@ variables.
 
 ## Example
 
-```toml
-# .rocket.toml
+```san
+# .rocket.san
 [aws_s3]
 region = $MY_AWS_S3_REGION
 bucket = "my-bucket"

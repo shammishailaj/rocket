@@ -72,10 +72,10 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 ## Usage
 
-See [https://github.com/astrocorp42/rocket/blob/master/.rocket.toml](https://github.com/astrocorp42/rocket/blob/master/.rocket.toml) for an example with the `github_releases` provider.
+See [https://github.com/astrocorp42/rocket/blob/master/.rocket.san](https://github.com/astrocorp42/rocket/blob/master/.rocket.san) for an example with the `github_releases` provider.
 
-Start by creating a `.rocket.toml` file. Here is an example to deploy a GitHub release:
-```toml
+Start by creating a `.rocket.san` file. Here is an example to deploy a GitHub release:
+```san
 description = "This is a configuration file for rocket: automated software delivery as fast and easy as possible. See https://github.com/astrocorp42/rocket"
 
 [github_releases]
@@ -94,13 +94,13 @@ assets = [
 ```
 $ tree -a
 .
-├── .rocket_dev.toml
-└── .rocket.toml
+├── .rocket_dev.san
+└── .rocket.san
 ```
 then you ccan run
 ```bash
-$ rocket # -> use the default .rocket.toml
-$ rocket -c .rocket_dev.toml # to deploy in your dev environment
+$ rocket # -> use the default .rocket.san
+$ rocket -c .rocket_dev.san # to deploy in your dev environment
 ```
 
 
@@ -128,7 +128,7 @@ deploy:
   skip_cleanup: true
   # The important part: it's the same as
   # curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh && $HOME/.rocket/rocket
-  # you can pass argument: ...ci.sh | sh -s -- -c abc/xys/another_config_file.toml
+  # you can pass argument: ...ci.sh | sh -s -- -c abc/xys/another_config_file.san
   script: curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/ci.sh | sh
   on:
     repo: astrocorp42/rocket
@@ -146,14 +146,14 @@ When starting **rocket** prepares the deploy environment. It starts by setting a
 The variables can be overwritten and they take precedence over each other in this order:
 
 1. Already set environment variables (take precedence over all)
-2. [TOML-defined environment variables](#toml-defined-environment-variables)
+2. [SAN-defined environment variables](#san-defined-environment-variables)
 3. [Predefined variables](#predefined-environment-variables) (are the lowest in the chain)
 
-### TOML-defined environment variables
+### SAN-defined environment variables
 
-rocket allow you to define variables inside `.rocket.toml` that are then injected in the environment.
+rocket allow you to define variables inside `.rocket.san` that are then injected in the environment.
 For example:
-```toml
+```san
 [env]
 MY_VARIABLE = "MYSUPERVALUE"
 # You are able to use other variables inside your variable definition (or escape them with $$):

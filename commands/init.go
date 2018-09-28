@@ -1,14 +1,13 @@
 package commands
 
 import (
-	"bytes"
 	"fmt"
 	"io/ioutil"
 
-	"github.com/BurntSushi/toml"
-	"github.com/astrocorp42/rocket/config"
 	"github.com/astrocorp42/astroflow-go"
 	"github.com/astrocorp42/astroflow-go/log"
+	"github.com/astrocorp42/rocket/config"
+	"github.com/phasersec/san-go"
 	"github.com/spf13/cobra"
 )
 
@@ -16,7 +15,7 @@ var initForce bool
 
 func init() {
 	RocketCmd.AddCommand(InitCmd)
-	InitCmd.Flags().BoolVar(&initForce, "force", false, fmt.Sprintf("Force and override an existing %s.(toml|json) file", config.DefaultConfigurationFileName))
+	InitCmd.Flags().BoolVar(&initForce, "force", false, fmt.Sprintf("Force and override an existing %s.san file", config.DefaultConfigurationFileName))
 }
 
 // InitCmd is the rocket's `init` command. It creates a configuration with default configuration
@@ -38,13 +37,12 @@ var InitCmd = &cobra.Command{
 
 		conf := config.Default()
 		filePath := config.DefaultConfigurationFileName
-		buf := new(bytes.Buffer)
-		err = toml.NewEncoder(buf).Encode(conf)
+		buf, err := san.Marshal(conf)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
 
-		err = ioutil.WriteFile(filePath, buf.Bytes(), 0644)
+		err = ioutil.WriteFile(filePath, buf, 0644)
 		if err != nil {
 			log.Fatal(err.Error())
 		}

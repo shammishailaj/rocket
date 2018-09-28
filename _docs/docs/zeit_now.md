@@ -25,8 +25,8 @@ It follows the below steps:
 
 ## Example
 
-```toml
-# .rocket.toml
+```san
+# .rocket.san
 [zeit_now]
 directory = "dist"
 name = "my-app"

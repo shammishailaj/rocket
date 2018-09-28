@@ -40,8 +40,8 @@ variables.
 
 ## Example
 
-```toml
-# .rocket.toml
+```san
+# .rocket.san
 application = "myapp"
 environment = "myapp-production"
 s3_bucket = "mybucket"

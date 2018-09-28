@@ -14,8 +14,8 @@
 
 ## Example
 
-```toml
-# .rocket.toml
+```san
+# .rocket.san
 [heroku]
 app = "my-awesome-heroku-app"
 api_key = "$HEROKU_TOKEN"

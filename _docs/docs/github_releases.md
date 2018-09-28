@@ -17,8 +17,8 @@
 
 ## Example
 
-```toml
-# .rocket.toml
+```san
+# .rocket.san
 [github_releases]
 api_key = "$GITHUB_TOKEN"
 assets = [

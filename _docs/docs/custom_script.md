@@ -6,8 +6,8 @@
 
 ## Example
 
-```toml
-# .rocket.toml
+```san
+# .rocket.san
 script = [
   "ls -l",
   "echo $HOME",  

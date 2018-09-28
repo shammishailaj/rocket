@@ -74,26 +74,36 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 ## Usage
 
+`rocket` use [SAN](https://astrocorp.net/san) file for it's configuration.
+
 Go to your project's root directory then
 ```bash
-$ rocket init # create a configuration .rocket.toml file with default configuration
+$ rocket init # create a configuration .rocket.san file with default configuration
 # edit the file with the desired configuration
-$ cat .rocket.toml
+$ cat .rocket.san
 ```
-```toml
-description = "This is a configuration file for rocket: Automated software delivery as fast and easy as possible. See https://github.com/astrocorp42/rocket"
+```san
+description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/astrocorp42/rocket"
 
-[github_releases]
-assets = [
-  "dist/*.zip",
-  "dist/rocket_*_sha512sums.txt"
-]
+github_releases = {
+  assets = [
+    "dist/*.zip",
+    "dist/rocket_*_sha512sums.txt"
+  ]
+}
+
+docker = {
+  images = [
+    "astrocorp/rocket:$VERSION",
+    "astrocorp/rocket:latest"
+  ]
+}
 ```
 ```bash
 $ rocket # to deploy
 ```
 
-See [https://github.com/astrocorp42/rocket/blob/master/.rocket.toml](https://github.com/astrocorp42/rocket/blob/master/.rocket.toml) for an example using both the `github_releases` and the `docker` providers.
+See [https://github.com/astrocorp42/rocket/blob/master/.rocket.san](https://github.com/astrocorp42/rocket/blob/master/.rocket.san) for an example using both the `github_releases` and the `docker` providers.
 
 
 
@@ -108,7 +118,7 @@ Usage:
 
 Available Commands:
   help        Help about any command
-  init        Init rocket by creating a .rocket.toml configuration file
+  init        Init rocket by creating a .rocket.san configuration file
   version     Display the version and build information
 
 Flags:

@@ -20,8 +20,8 @@ so this provider is just a wrapper around the `docker` CLI which should be insta
 
 ## Example
 
-```toml
-# .rocket.toml
+```san
+# .rocket.san
 [docker]
 username = "$MY_DOCKER_USERNAME"
 password = "$MY_DOCKER_PASSWORD"
