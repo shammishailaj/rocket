@@ -44,7 +44,6 @@ $(NAME): dir
 test:
 	go vet $(go list ./... | grep -v /vendor/)
 	go test -v -race ./...
-	flint
 
 install:
 	CGO_ENABLED=0 go install -a -installsuffix cgo \
