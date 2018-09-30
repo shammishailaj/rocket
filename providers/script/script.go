@@ -6,8 +6,8 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/astrocorp42/rocket/config"
-	"github.com/astrocorp42/astroflow-go/log"
+	"github.com/bloom42/rocket/config"
+	"github.com/bloom42/astroflow-go/log"
 )
 
 // Deploy deploy the script part of the configuration

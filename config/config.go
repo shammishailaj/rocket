@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/astrocorp42/astroflow-go/log"
+	"github.com/bloom42/astroflow-go/log"
 	"github.com/phasersec/san-go"
 )
 
@@ -134,7 +134,7 @@ func Default() Config {
 	var ret Config
 
 	ret.Description = "This is a configuration file for rocket: automated software delivery as fast and easy as possible. " +
-		"See https://github.com/astrocorp42/rocket"
+		"See https://github.com/bloom42/rocket"
 
 	return ret
 }

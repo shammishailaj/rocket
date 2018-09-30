@@ -4,12 +4,12 @@ set -e
 usage() {
   this=$1
   cat <<EOF
-$this: download go binaries for https://github.com/astrocorp42/rocket
+$this: download go binaries for https://github.com/bloom42/rocket
 
 Usage: $this [-b] bindir [version]
   -b sets bindir or installation directory, default "$HOME/.rocket"
    [version] is a version number from
-   https://github.com/astrocorp42/rocket/releases
+   https://github.com/bloom42/rocket/releases
    If version is missing, then an attempt to find the latest will be found.
 
 EOF
@@ -279,7 +279,7 @@ End of functions from https://github.com/client9/shlib
 ------------------------------------------------------------------------
 EOF
 
-OWNER=astrocorp42
+OWNER=bloom42
 REPO=rocket
 BINARY=rocket
 FORMAT=zip

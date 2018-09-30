@@ -1,4 +1,4 @@
-description = "This is a configuration file for flint, the filesystem linter. More information here: https://github.com/astrocorp42/flint"
+description = "This is a configuration file for flint, the filesystem linter. More information here: https://github.com/bloom42/flint"
 default_severity = "error"
 error_exit_code = 1
 warning_exit_code = 0

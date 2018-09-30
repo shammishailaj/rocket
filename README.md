@@ -6,10 +6,10 @@
 
 --------
 
-[![GoDoc](https://godoc.org/github.com/astrocorp42/rocket?status.svg)](https://godoc.org/github.com/astrocorp42/rocket)
-[![GitHub release](https://img.shields.io/github/release/astrocorp42/rocket.svg)](https://github.com/astrocorp42/rocket/releases/latest)
-[![Build Status](https://travis-ci.org/astrocorp42/rocket.svg?branch=master)](https://travis-ci.org/astrocorp42/rocket)
-[![Docker image](https://img.shields.io/badge/docker-astrocorp/rocket-blue.svg)](https://hub.docker.com/r/astrocorp/rocket)
+[![GoDoc](https://godoc.org/github.com/bloom42/rocket?status.svg)](https://godoc.org/github.com/bloom42/rocket)
+[![GitHub release](https://img.shields.io/github/release/bloom42/rocket.svg)](https://github.com/bloom42/rocket/releases/latest)
+[![Build Status](https://travis-ci.org/bloom42/rocket.svg?branch=master)](https://travis-ci.org/bloom42/rocket)
+[![Docker image](https://img.shields.io/badge/docker-bloom42/rocket-blue.svg)](https://hub.docker.com/r/bloom42/rocket)
 
 `rocket` is the `D` in CI/CD: It allows to easily deliver software to a large range of providers from any CI/CD pipeline.
 
@@ -27,22 +27,22 @@
 
 ### Using go (nightly)
 ```bash
-$ go get -u github.com/astrocorp42/rocket
+$ go get -u github.com/bloom42/rocket
 ```
 
 ### Latest
 ```bash
-curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh | sh
+curl -sSf https://raw.githubusercontent.com/bloom42/rocket/master/install.sh | sh
 ```
 
 ### Binary releases
-[https://github.com/astrocorp42/rocket/releases/latest](https://github.com/astrocorp42/rocket/releases/latest)
+[https://github.com/bloom42/rocket/releases/latest](https://github.com/bloom42/rocket/releases/latest)
 
 
 
 ## Docker image
 
-[astrocorp/rocket](https://hub.docker.com/r/astrocorp/rocket)
+[bloom42/rocket](https://hub.docker.com/r/bloom42/rocket)
 
 
 
@@ -83,7 +83,7 @@ $ rocket init # create a configuration .rocket.san file with default configurati
 $ cat .rocket.san
 ```
 ```san
-description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/astrocorp42/rocket"
+description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/bloom42/rocket"
 
 github_releases = {
   assets = [
@@ -94,8 +94,8 @@ github_releases = {
 
 docker = {
   images = [
-    "astrocorp/rocket:$VERSION",
-    "astrocorp/rocket:latest"
+    "bloom42/rocket:$VERSION",
+    "bloom42/rocket:latest"
   ]
 }
 ```
@@ -103,14 +103,14 @@ docker = {
 $ rocket # to deploy
 ```
 
-See [https://github.com/astrocorp42/rocket/blob/master/.rocket.san](https://github.com/astrocorp42/rocket/blob/master/.rocket.san) for an example using both the `github_releases` and the `docker` providers.
+See [https://github.com/bloom42/rocket/blob/master/.rocket.san](https://github.com/bloom42/rocket/blob/master/.rocket.san) for an example using both the `github_releases` and the `docker` providers.
 
 
 
 Help
 ```bash
 $ rocket help
-Automated software delivery as fast and easy as possible. rocket is the D in CI/CD. See https://github.com/astrocorp42/rocket
+Automated software delivery as fast and easy as possible. rocket is the D in CI/CD. See https://github.com/bloom42/rocket
 
 Usage:
   rocket [flags]
@@ -142,4 +142,4 @@ See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
 
 ## Roadmap
 
-See [https://github.com/astrocorp42/rocket/projects/2](https://github.com/astrocorp42/rocket/projects/2)
+See [https://github.com/bloom42/rocket/projects/2](https://github.com/bloom42/rocket/projects/2)

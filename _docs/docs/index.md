@@ -15,10 +15,10 @@ It allows to easily release software across a large range of providers from any 
 The only required dependecy is `git`.
 
 
-[![GoDoc](https://godoc.org/github.com/astrocorp42/rocket?status.svg)](https://godoc.org/github.com/astrocorp42/rocket)
-[![GitHub release](https://img.shields.io/github/release/astrocorp42/rocket.svg)](https://github.com/astrocorp42/rocket/releases/latest)
-[![Build Status](https://travis-ci.org/astrocorp42/rocket.svg?branch=master)](https://travis-ci.org/astrocorp42/rocket)
-[![Docker image](https://img.shields.io/badge/docker-astrocorp/rocket-blue.svg)](https://hub.docker.com/r/astrocorp/rocket)
+[![GoDoc](https://godoc.org/github.com/bloom42/rocket?status.svg)](https://godoc.org/github.com/bloom42/rocket)
+[![GitHub release](https://img.shields.io/github/release/bloom42/rocket.svg)](https://github.com/bloom42/rocket/releases/latest)
+[![Build Status](https://travis-ci.org/bloom42/rocket.svg?branch=master)](https://travis-ci.org/bloom42/rocket)
+[![Docker image](https://img.shields.io/badge/docker-bloom42/rocket-blue.svg)](https://hub.docker.com/r/bloom42/rocket)
 
 
 
@@ -26,23 +26,23 @@ The only required dependecy is `git`.
 
 ### Using go (nightly)
 ```bash
-$ go get -u github.com/astrocorp42/rocket
+$ go get -u github.com/bloom42/rocket
 ```
 
 ### Latest
 ```bash
-curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh | sh
+curl -sSf https://raw.githubusercontent.com/bloom42/rocket/master/install.sh | sh
 ```
 
 ### Binary releases
-[https://github.com/astrocorp42/rocket/releases/latest](https://github.com/astrocorp42/rocket/releases/latest)
+[https://github.com/bloom42/rocket/releases/latest](https://github.com/bloom42/rocket/releases/latest)
 
 
 
 
 ## Docker image
 
-[astrocorp/rocket](https://hub.docker.com/r/astrocorp/rocket)
+[bloom42/rocket](https://hub.docker.com/r/bloom42/rocket)
 
 
 
@@ -72,11 +72,11 @@ curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh
 
 ## Usage
 
-See [https://github.com/astrocorp42/rocket/blob/master/.rocket.san](https://github.com/astrocorp42/rocket/blob/master/.rocket.san) for an example with the `github_releases` provider.
+See [https://github.com/bloom42/rocket/blob/master/.rocket.san](https://github.com/bloom42/rocket/blob/master/.rocket.san) for an example with the `github_releases` provider.
 
 Start by creating a `.rocket.san` file. Here is an example to deploy a GitHub release:
 ```san
-description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/astrocorp42/rocket"
+description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/bloom42/rocket"
 
 github_releases = {
   assets = [
@@ -127,11 +127,11 @@ deploy:
   provider: script
   skip_cleanup: true
   # The important part: it's the same as
-  # curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/install.sh && $HOME/.rocket/rocket
+  # curl -sSf https://raw.githubusercontent.com/bloom42/rocket/master/install.sh && $HOME/.rocket/rocket
   # you can pass argument: ...ci.sh | sh -s -- -c abc/xys/another_config_file.san
-  script: curl -sSf https://raw.githubusercontent.com/astrocorp42/rocket/master/ci.sh | sh
+  script: curl -sSf https://raw.githubusercontent.com/bloom42/rocket/master/ci.sh | sh
   on:
-    repo: astrocorp42/rocket
+    repo: bloom42/rocket
     tags: true
 ```
 
@@ -177,4 +177,4 @@ api_key = "$HEROKU_TOKEN" # -> it's not defined above nor in the predefined vari
 
 ## Roadmap
 
-See [https://github.com/astrocorp42/rocket/projects/2](https://github.com/astrocorp42/rocket/projects/2)
+See [https://github.com/bloom42/rocket/projects/2](https://github.com/bloom42/rocket/projects/2)

@@ -1,8 +1,8 @@
-module github.com/astrocorp42/rocket
+module github.com/bloom42/rocket
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/astrocorp42/astroflow-go v0.9.1
+	github.com/bloom42/astroflow-go v0.9.1
 	github.com/aws/aws-sdk-go v1.15.44
 	github.com/go-ini/ini v1.38.2 // indirect
 	github.com/google/go-github v17.0.0+incompatible

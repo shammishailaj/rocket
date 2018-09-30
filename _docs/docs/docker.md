@@ -27,7 +27,7 @@ docker = {
   password = "$MY_DOCKER_PASSWORD"
   # images to push
   images = [
-    "astrocorp/rocket:lastest",
+    "bloom42/rocket:lastest",
     "my-custom-registry/org/image:my-tag",
     "my-custom-registry/org/image:$VERSION", # we use env vars here
   ]

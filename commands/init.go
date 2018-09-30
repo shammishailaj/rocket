@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/astrocorp42/astroflow-go"
-	"github.com/astrocorp42/astroflow-go/log"
-	"github.com/astrocorp42/rocket/config"
+	"github.com/bloom42/astroflow-go"
+	"github.com/bloom42/astroflow-go/log"
+	"github.com/bloom42/rocket/config"
 	"github.com/phasersec/san-go"
 	"github.com/spf13/cobra"
 )

@@ -5,9 +5,9 @@ RUN apk update && apk upgrade && \
 
 ADD dist/rocket /bin/rocket
 
-RUN adduser -D -g '' astrocorp
+RUN adduser -D -g '' bloom
 
-USER astrocorp
+USER bloom
 
 WORKDIR /rocket
 

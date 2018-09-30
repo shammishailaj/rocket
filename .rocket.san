@@ -1,4 +1,4 @@
-description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/astrocorp42/rocket"
+description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/bloom42/rocket"
 
 github_releases = {
   assets = [
@@ -9,7 +9,7 @@ github_releases = {
 
 docker = {
   images = [
-    "astrocorp/rocket:$VERSION",
-    "astrocorp/rocket:latest"
+    "bloom42/rocket:$VERSION",
+    "bloom42/rocket:latest"
   ]
 }

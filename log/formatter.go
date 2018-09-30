@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/astrocorp42/astroflow-go"
+	"github.com/bloom42/astroflow-go"
 	"github.com/json-iterator/go"
 )
 

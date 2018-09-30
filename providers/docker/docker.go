@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/astrocorp42/rocket/config"
+	"github.com/bloom42/rocket/config"
 )
 
 func exe(script string) error {
