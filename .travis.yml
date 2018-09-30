@@ -16,7 +16,6 @@ git:
   submodules: false
 
 before_script:
-  - go get -u github.com/bloom42/flint
   - go get
   - make test
   - make
