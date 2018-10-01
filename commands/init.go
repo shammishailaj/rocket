@@ -7,7 +7,7 @@ import (
 	"github.com/bloom42/astroflow-go"
 	"github.com/bloom42/astroflow-go/log"
 	"github.com/bloom42/rocket/config"
-	"github.com/phasersec/san-go"
+	"github.com/bloom42/san-go"
 	"github.com/spf13/cobra"
 )
 

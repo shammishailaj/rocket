@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/bloom42/astroflow-go/log"
-	"github.com/phasersec/san-go"
+	"github.com/bloom42/san-go"
 )
 
 // DefaultConfigurationFileName is the default configuration file name, without extension
