@@ -123,7 +123,7 @@ var RocketCmd = &cobra.Command{
 		}
 
 		// aws_eb
-		if conf.ZeitNow != nil {
+		if conf.AWSEB != nil {
 			log.Debug("aws_eb: starting provider")
 			err = awseb.Deploy(*conf.AWSEB)
 			if err != nil {
