@@ -14,7 +14,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-// GitHubClient represent an authenticated GitHub clien to perform the API operations
+// GitHubClient represent an authenticated GitHub client to perform the API operations
 type GitHubClient struct {
 	client *github.Client
 }

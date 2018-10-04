@@ -8,11 +8,11 @@
 # Introduction
 
 `rocket` is a software delivery automation tool. It's the `D` in`CI/CD`. The goal is to provide an easy
-to use uniform experience of software delivery whether in a CI environment or on your local laptotp.
+to use uniform experience of software delivery whether in a CI environment or on your local laptop.
 
 It allows to easily release software across a large range of providers from any CI/CD pipeline.
 
-The only required dependecy is `git`.
+The only required dependency is `git`.
 
 
 [![GoDoc](https://godoc.org/github.com/bloom42/rocket?status.svg)](https://godoc.org/github.com/bloom42/rocket)
@@ -90,14 +90,14 @@ github_releases = {
 
 ## Environments
 
-`rocket` support different environments throught different configuration files:
+`rocket` support different environments through different configuration files:
 ```
 $ tree -a
 .
 ├── .rocket_dev.san
 └── .rocket.san
 ```
-then you ccan run
+then you can run
 ```bash
 $ rocket # -> use the default .rocket.san
 $ rocket -c .rocket_dev.san # to deploy in your dev environment

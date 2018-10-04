@@ -14,7 +14,7 @@ It will proceed the following steps:
 2. upload the `bundle.zip` to the given S3 bucket
 3. create a new Application version
 
-**Note**:  if `access_key_id` or `secret_access_key` is emtpy, even after environment expanded
+**Note**:  if `access_key_id` or `secret_access_key` is empty, even after environment expanded
 and default values filled, the `aws_s3` provider will use the *shared credentials file* (`~/.aws/credentials`)
 and if empty the *EC2 instance role credentials*.
 
@@ -34,7 +34,7 @@ variables.
 | `application` | `string` | **$AWS_EB_APPLICATION** | The EB application to use |
 | `environment` | `string` | **$AWS_EB_ENVIRONMENT** | The EB environment to use |
 | `s3_bucket` | `string` | **$AWS_S3_BUCKET** | The S3 bucket to upload the bundle to (MUST be the same region as the `eb` application) |
-| `version` | `string` | **$ROCKET_COMMIT_HASH** | The version of the applicaiton to release |
+| `version` | `string` | **$ROCKET_COMMIT_HASH** | The version of the application to release |
 | `directory` | `string` | `"."` | The directory of your project (files will be zipped and uploaded) |
 | `s3_key` | `string` | /**${AWS_EB_APPLICATION}**\_**${AWS_EB_ENVIRONMENT}**\_**${ROCKET_COMMIT_HASH}**.zip | The S3 key to upload the bundle to |
 

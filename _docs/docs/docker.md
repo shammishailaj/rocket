@@ -2,10 +2,10 @@
 
 ## Description
 
-The `docker` provider can be used to push image to any docker resgitry. You can login within `rocket`
+The `docker` provider can be used to push image to any docker registry. You can login within `rocket`
 or it can be done in a previous step in the pipeline.
 
-Not that because of the client/server nature of `docker`, it cannot be directly embeded in `rocket`
+Not that because of the client/server nature of `docker`, it cannot be directly embedded in `rocket`
 so this provider is just a wrapper around the `docker` CLI which should be installed.
 
 ## Fields
@@ -27,7 +27,7 @@ docker = {
   password = "$MY_DOCKER_PASSWORD"
   # images to push
   images = [
-    "bloom42/rocket:lastest",
+    "bloom42/rocket:latest",
     "my-custom-registry/org/image:my-tag",
     "my-custom-registry/org/image:$VERSION", # we use env vars here
   ]

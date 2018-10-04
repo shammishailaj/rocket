@@ -14,7 +14,7 @@ It follows the below steps:
 | ----- | -----| ------------- |------------ |
 | `token` | `string` | **$ZEIT_TOKEN** | The zeit token to use |
 | `directory` | `string` | `"."` | The directory to upload |
-| `env` | `map[string]string` | `{}` | The environnement for the deployment |
+| `env` | `map[string]string` | `{}` | The environment for the deployment |
 | `public` | `bool` | `false` | Whether the deployment is public or not |
 | `deployment_type` | `string` | `"NPM"` | see the zeit API [documentation](https://zeit.co/api#endpoints/deployments/create-a-new-deployment) |
 | `name` | `string` | **$ZEIT_NOW_NAME** | see the zeit API [documentation](https://zeit.co/api#endpoints/deployments/create-a-new-deployment) |

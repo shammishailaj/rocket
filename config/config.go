@@ -34,7 +34,7 @@ type Config struct {
 	AWSEB          *AWSEBConfig          `json:"aws_eb" san:"aws_eb"`
 }
 
-// ScriptConfig is the configration for the script provider
+// ScriptConfig is the configuration for the script provider
 type ScriptConfig []string
 
 // HerokuConfig is the configuration for the `heroku` provider
@@ -58,7 +58,7 @@ type GitHubReleasesConfig struct {
 	UploadURL  *string  `json:"upload_url" san:"upload_url"`
 }
 
-// DockerConfig is the configration for the docker provider
+// DockerConfig is the configuration for the docker provider
 type DockerConfig struct {
 	Username *string  `json:"username" san:"username"`
 	Password *string  `josn:"password" san:"password"`
@@ -66,7 +66,7 @@ type DockerConfig struct {
 	Images   []string `json:"images" san:"images"`
 }
 
-// AWSS3Config is the configration for the aws_s3 provider
+// AWSS3Config is the configuration for the aws_s3 provider
 type AWSS3Config struct {
 	AccessKeyID     *string `json:"access_key_id" san:"access_key_id"`
 	SecretAccessKey *string `json:"secret_access_key" san:"secret_access_key"`
@@ -76,7 +76,7 @@ type AWSS3Config struct {
 	RemoteDirectory *string `json:"remote_directory" san:"remote_directory"`
 }
 
-// ZeitNowConfig is the configration for the `zeit_now` provider
+// ZeitNowConfig is the configuration for the `zeit_now` provider
 type ZeitNowConfig struct {
 	Token           *string           `json:"token" san:"token"`
 	Directory       *string           `json:"directory" san:"directory"`
@@ -89,7 +89,7 @@ type ZeitNowConfig struct {
 	SessionAffinity *string           `json:"session_affinity" san:"session_affinity"`
 }
 
-// AWSEBConfig is the configration for the `aws_eb` provider
+// AWSEBConfig is the configuration for the `aws_eb` provider
 type AWSEBConfig struct {
 	AccessKeyID     *string `json:"access_key_id" san:"access_key_id"`
 	SecretAccessKey *string `json:"secret_access_key" san:"secret_access_key"`
@@ -140,7 +140,7 @@ func Default() Config {
 }
 
 // FindConfigFile return the path of the first configuration file found
-// it returns an emtpy string if none is found
+// it returns an empty string if none is found
 func FindConfigFile(file string) string {
 	if file != "" {
 		if fileExists(file) {
