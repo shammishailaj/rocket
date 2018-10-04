@@ -4,7 +4,7 @@
 
 The `aws_s3` provider ease the uploading of artifacts to AWS S3 buckets.
 
-**Note**:  if `access_key_id` or `secret_access_key` is emtpy, even after environment expanded
+**Note**:  if `access_key_id` or `secret_access_key` is empty, even after environment expanded
 and default values filled, the `aws_s3` provider will use the *shared credentials file* (`~/.aws/credentials`)
 and if empty the *EC2 instance role credentials*.
 
