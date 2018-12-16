@@ -8,11 +8,11 @@ import (
 	"strings"
 
 	"github.com/bloom42/astroflow-go/log"
-	"github.com/bloom42/san-go"
+	"github.com/bloom42/sane-go"
 )
 
 // DefaultConfigurationFileName is the default configuration file name, without extension
-const DefaultConfigurationFileName = ".rocket.san"
+const DefaultConfigurationFileName = ".rocket.sane"
 
 var PredefinedEnv = []string{
 	"ROCKET_COMMIT_HASH",
@@ -21,17 +21,17 @@ var PredefinedEnv = []string{
 }
 
 type Config struct {
-	Description string            `json:"description" san:"description"`
-	Env         map[string]string `json:"env" san:"env"`
+	Description string            `json:"description" sane:"description"`
+	Env         map[string]string `json:"env" sane:"env"`
 
 	// providers
-	Script         ScriptConfig          `json:"script,omitempty" san:"script,omitempty"`
-	Heroku         *HerokuConfig         `json:"heroku,omitempty" san:"heroku,omitempty"`
-	GitHubReleases *GitHubReleasesConfig `json:"github_releases,omitempty" san:"github_releases,omitempty"`
-	Docker         *DockerConfig         `json:"docker" san:"docker"`
-	AWSS3          *AWSS3Config          `json:"aws_s3" san:"aws_s3"`
-	ZeitNow        *ZeitNowConfig        `json:"zeit_now" san:"zeit_now"`
-	AWSEB          *AWSEBConfig          `json:"aws_eb" san:"aws_eb"`
+	Script         ScriptConfig          `json:"script,omitempty" sane:"script,omitempty"`
+	Heroku         *HerokuConfig         `json:"heroku,omitempty" sane:"heroku,omitempty"`
+	GitHubReleases *GitHubReleasesConfig `json:"github_releases,omitempty" sane:"github_releases,omitempty"`
+	Docker         *DockerConfig         `json:"docker" sane:"docker"`
+	AWSS3          *AWSS3Config          `json:"aws_s3" sane:"aws_s3"`
+	ZeitNow        *ZeitNowConfig        `json:"zeit_now" sane:"zeit_now"`
+	AWSEB          *AWSEBConfig          `json:"aws_eb" sane:"aws_eb"`
 }
 
 // ScriptConfig is the configuration for the script provider
@@ -39,67 +39,67 @@ type ScriptConfig []string
 
 // HerokuConfig is the configuration for the `heroku` provider
 type HerokuConfig struct {
-	APIKey    *string `json:"api_key" san:"api_key"`
-	App       *string `json:"app" san:"app"`
-	Directory *string `json:"directory" san:"directory"`
-	Version   *string `json:"version" san:"version"`
+	APIKey    *string `json:"api_key" sane:"api_key"`
+	App       *string `json:"app" sane:"app"`
+	Directory *string `json:"directory" sane:"directory"`
+	Version   *string `json:"version" sane:"version"`
 }
 
 // GitHubReleasesConfig is the configuration for the `github_releases` provider
 type GitHubReleasesConfig struct {
-	Name       *string  `json:"name" san:"name"`
-	Body       *string  `json:"body" san:"body"`
-	Prerelease *bool    `json:"prerelease" san:"prerelease"`
-	Repo       *string  `json:"repo" san:"repo"`
-	APIKey     *string  `json:"api_key" san:"api_key"`
-	Assets     []string `json:"assets" san:"assets"`
-	Tag        *string  `json:"tag" san:"tag"`
-	BaseURL    *string  `json:"base_url" san:"base_url"`
-	UploadURL  *string  `json:"upload_url" san:"upload_url"`
+	Name       *string  `json:"name" sane:"name"`
+	Body       *string  `json:"body" sane:"body"`
+	Prerelease *bool    `json:"prerelease" sane:"prerelease"`
+	Repo       *string  `json:"repo" sane:"repo"`
+	APIKey     *string  `json:"api_key" sane:"api_key"`
+	Assets     []string `json:"assets" sane:"assets"`
+	Tag        *string  `json:"tag" sane:"tag"`
+	BaseURL    *string  `json:"base_url" sane:"base_url"`
+	UploadURL  *string  `json:"upload_url" sane:"upload_url"`
 }
 
 // DockerConfig is the configuration for the docker provider
 type DockerConfig struct {
-	Username *string  `json:"username" san:"username"`
-	Password *string  `josn:"password" san:"password"`
-	Login    *bool    `json:"login" san:"login"`
-	Images   []string `json:"images" san:"images"`
+	Username *string  `json:"username" sane:"username"`
+	Password *string  `josn:"password" sane:"password"`
+	Login    *bool    `json:"login" sane:"login"`
+	Images   []string `json:"images" sane:"images"`
 }
 
 // AWSS3Config is the configuration for the aws_s3 provider
 type AWSS3Config struct {
-	AccessKeyID     *string `json:"access_key_id" san:"access_key_id"`
-	SecretAccessKey *string `json:"secret_access_key" san:"secret_access_key"`
-	Region          *string `json:"region" san:"region"`
-	Bucket          *string `json:"bucket" san:"bucket"`
-	LocalDirectory  *string `json:"local_directory" san:"local_directory"`
-	RemoteDirectory *string `json:"remote_directory" san:"remote_directory"`
+	AccessKeyID     *string `json:"access_key_id" sane:"access_key_id"`
+	SecretAccessKey *string `json:"secret_access_key" sane:"secret_access_key"`
+	Region          *string `json:"region" sane:"region"`
+	Bucket          *string `json:"bucket" sane:"bucket"`
+	LocalDirectory  *string `json:"local_directory" sane:"local_directory"`
+	RemoteDirectory *string `json:"remote_directory" sane:"remote_directory"`
 }
 
 // ZeitNowConfig is the configuration for the `zeit_now` provider
 type ZeitNowConfig struct {
-	Token           *string           `json:"token" san:"token"`
-	Directory       *string           `json:"directory" san:"directory"`
-	Env             map[string]string `json:"env" san:"env"`
-	Public          *bool             `json:"public" san:"public"`
-	DeploymentType  *string           `json:"deployment_type" san:"deployment_type"`
-	Name            *string           `json:"name" san:"name"`
-	ForceNew        *bool             `json:"force_new" san:"force_new"`
-	Engines         map[string]string `json:"engines" san:"engines"`
-	SessionAffinity *string           `json:"session_affinity" san:"session_affinity"`
+	Token           *string           `json:"token" sane:"token"`
+	Directory       *string           `json:"directory" sane:"directory"`
+	Env             map[string]string `json:"env" sane:"env"`
+	Public          *bool             `json:"public" sane:"public"`
+	DeploymentType  *string           `json:"deployment_type" sane:"deployment_type"`
+	Name            *string           `json:"name" sane:"name"`
+	ForceNew        *bool             `json:"force_new" sane:"force_new"`
+	Engines         map[string]string `json:"engines" sane:"engines"`
+	SessionAffinity *string           `json:"session_affinity" sane:"session_affinity"`
 }
 
 // AWSEBConfig is the configuration for the `aws_eb` provider
 type AWSEBConfig struct {
-	AccessKeyID     *string `json:"access_key_id" san:"access_key_id"`
-	SecretAccessKey *string `json:"secret_access_key" san:"secret_access_key"`
-	Region          *string `json:"region" san:"region"`
-	Application     *string `json:"application" san:"application"`
-	Environment     *string `json:"environment" san:"environment"`
-	S3Bucket        *string `json:"s3_bucket" san:"s3_bucket"`
-	Version         *string `json:"version" san:"version"`
-	Directory       *string `json:"directory" san:"directory"`
-	S3Key           *string `json:"s3_key" san:"s3_key"`
+	AccessKeyID     *string `json:"access_key_id" sane:"access_key_id"`
+	SecretAccessKey *string `json:"secret_access_key" sane:"secret_access_key"`
+	Region          *string `json:"region" sane:"region"`
+	Application     *string `json:"application" sane:"application"`
+	Environment     *string `json:"environment" sane:"environment"`
+	S3Bucket        *string `json:"s3_bucket" sane:"s3_bucket"`
+	Version         *string `json:"version" sane:"version"`
+	Directory       *string `json:"directory" sane:"directory"`
+	S3Key           *string `json:"s3_key" sane:"s3_key"`
 }
 
 // ExpandEnv 'fix' os.ExpandEnv by allowing to use $$ to escape a dollar e.g: $$HOME -> $HOME
@@ -117,7 +117,7 @@ func parseConfig(configFilePath string) (Config, error) {
 		return ret, err
 	}
 
-	err = san.Unmarshal(file, &ret)
+	err = sane.Unmarshal(file, &ret)
 
 	return ret, err
 }

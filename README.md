@@ -51,20 +51,20 @@ curl -sSf https://raw.githubusercontent.com/bloom42/rocket/master/install.sh | s
 
 | Provider              | Status | Documentation |
 | --------------------- | -------| ------------- |
-| [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) `aws_eb` | ✔ | [docs](https://astrocorp.net/rocket/aws_eb) |
-| [AWS S3](https://aws.amazon.com/s3) `aws_s3` | ✔ | [docs](https://astrocorp.net/rocket/aws_s3) |
-| Custom script `script` | ✔ | [docs](https://astrocorp.net/rocket/custom_script) |
-| [Docker](https://www.docker.com) `docker` | ✔ | [docs](https://astrocorp.net/rocket/docker) |
+| [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) `aws_eb` | ✔ | [docs](https://opensource.bloom.sh/rocket/aws_eb) |
+| [AWS S3](https://aws.amazon.com/s3) `aws_s3` | ✔ | [docs](https://opensource.bloom.sh/rocket/aws_s3) |
+| Custom script `script` | ✔ | [docs](https://opensource.bloom.sh/rocket/custom_script) |
+| [Docker](https://www.docker.com) `docker` | ✔ | [docs](https://opensource.bloom.sh/rocket/docker) |
 | [Google Firebase](https://firebase.google.com) `firebase` | 🕐 | - |
 | [Google Cloud Storage](https://cloud.google.com/storage) `gcs` | 🕐 | - |
-| [GitHub releases](https://help.github.com/categories/releases) `github_releases` | ✔ | [docs](https://astrocorp.net/rocket/github_releases) |
-| [Heroku](https://www.heroku.com) `heroku` | ✔ | [docs](https://astrocorp.net/rocket/heroku) |
+| [GitHub releases](https://help.github.com/categories/releases) `github_releases` | ✔ | [docs](https://opensource.bloom.sh/rocket/github_releases) |
+| [Heroku](https://www.heroku.com) `heroku` | ✔ | [docs](https://opensource.bloom.sh/rocket/heroku) |
 | [Netlify](https://www.netlify.com) `netlify` | 🚧 | - |
 | [NPM](https://www.npmjs.com) `npm` | 🕐 | - |
 | [SCP](https://en.wikipedia.org/wiki/Secure_copy) `scp` | 🕐 | - |
 | [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) `sftp` | 🕐 | - |
 | [SSH](https://en.wikipedia.org/wiki/Secure_Shell) `ssh` | 🕐 | - |
-| [ZEIT Now](https://zeit.co/now) `zeit_now` | ✔ | [docs](https://astrocorp.net/rocket/zeit_now) |
+| [ZEIT Now](https://zeit.co/now) `zeit_now` | ✔ | [docs](https://opensource.bloom.sh/rocket/zeit_now) |
 
 ✔ = Done 🚧 = in progress 🕐 = planned
 
@@ -74,15 +74,15 @@ curl -sSf https://raw.githubusercontent.com/bloom42/rocket/master/install.sh | s
 
 ## Usage
 
-`rocket` use [SAN](https://astrocorp.net/san) as configuration format.
+`rocket` use [SANE](https://opensource.bloom.sh/sane) as configuration format.
 
 Go to your project's root directory then
 ```bash
-$ rocket init # create a configuration .rocket.san file with default configuration
+$ rocket init # create a configuration .rocket.sane file with default configuration
 # edit the file with the desired configuration
-$ cat .rocket.san
+$ cat .rocket.sane
 ```
-```san
+```sane
 description = "This is a configuration file for rocket: Deploy software as fast and easily as possible. See https://github.com/bloom42/rocket"
 
 github_releases = {
@@ -103,7 +103,7 @@ docker = {
 $ rocket # to deploy
 ```
 
-See [https://github.com/bloom42/rocket/blob/master/.rocket.san](https://github.com/bloom42/rocket/blob/master/.rocket.san) for an example using both the `github_releases` and the `docker` providers.
+See [https://github.com/bloom42/rocket/blob/master/.rocket.sane](https://github.com/bloom42/rocket/blob/master/.rocket.sane) for an example using both the `github_releases` and the `docker` providers.
 
 
 
@@ -118,7 +118,7 @@ Usage:
 
 Available Commands:
   help        Help about any command
-  init        Init rocket by creating a .rocket.san configuration file
+  init        Init rocket by creating a .rocket.sane configuration file
   version     Display the version and build information
 
 Flags:
@@ -134,7 +134,7 @@ Use "rocket [command] --help" for more information about a command.
 
 ## Documentation
 
-See [https://astrocorp.net/rocket](https://astrocorp.net/rocket)
+See [https://opensource.bloom.sh/rocket](https://opensource.bloom.sh/rocket)
 
 
 

@@ -7,7 +7,7 @@ import (
 	"github.com/bloom42/astroflow-go"
 	"github.com/bloom42/astroflow-go/log"
 	"github.com/bloom42/rocket/config"
-	"github.com/bloom42/san-go"
+	"github.com/bloom42/sane-go"
 	"github.com/spf13/cobra"
 )
 
@@ -15,7 +15,7 @@ var initForce bool
 
 func init() {
 	RocketCmd.AddCommand(InitCmd)
-	InitCmd.Flags().BoolVar(&initForce, "force", false, fmt.Sprintf("Force and override an existing %s.san file", config.DefaultConfigurationFileName))
+	InitCmd.Flags().BoolVar(&initForce, "force", false, fmt.Sprintf("Force and override an existing %s.sane file", config.DefaultConfigurationFileName))
 }
 
 // InitCmd is the rocket's `init` command. It creates a configuration with default configuration
@@ -37,7 +37,7 @@ var InitCmd = &cobra.Command{
 
 		conf := config.Default()
 		filePath := config.DefaultConfigurationFileName
-		buf, err := san.Marshal(conf)
+		buf, err := sane.Marshal(conf)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
