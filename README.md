@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="rocket logo" src="https://opensource.bloom.sh/imgs/logos/rocket.png" height="180" />
+  <img alt="rocket logo" src="https://code.bloom.sh/imgs/logos/rocket.png" height="180" />
   <h3 align="center">Rocket</h3>
   <p align="center">Automated software delivery as fast and easy as possible</p>
 </p>
@@ -51,30 +51,29 @@ curl -sSf https://raw.githubusercontent.com/bloom42/rocket/master/install.sh | s
 
 | Provider              | Status | Documentation |
 | --------------------- | -------| ------------- |
-| [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) `aws_eb` | ✔ | [docs](https://opensource.bloom.sh/rocket/aws_eb) |
-| [AWS S3](https://aws.amazon.com/s3) `aws_s3` | ✔ | [docs](https://opensource.bloom.sh/rocket/aws_s3) |
-| Custom script `script` | ✔ | [docs](https://opensource.bloom.sh/rocket/custom_script) |
-| [Docker](https://www.docker.com) `docker` | ✔ | [docs](https://opensource.bloom.sh/rocket/docker) |
+| [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) `aws_eb` | ✔ | [docs](https://code.bloom.sh/rocket/aws_eb) |
+| [AWS S3](https://aws.amazon.com/s3) `aws_s3` | ✔ | [docs](https://code.bloom.sh/rocket/aws_s3) |
+| Custom script `script` | ✔ | [docs](https://code.bloom.sh/rocket/custom_script) |
+| [Docker](https://www.docker.com) `docker` | ✔ | [docs](https://code.bloom.sh/rocket/docker) |
 | [Google Firebase](https://firebase.google.com) `firebase` | 🕐 | - |
 | [Google Cloud Storage](https://cloud.google.com/storage) `gcs` | 🕐 | - |
-| [GitHub releases](https://help.github.com/categories/releases) `github_releases` | ✔ | [docs](https://opensource.bloom.sh/rocket/github_releases) |
-| [Heroku](https://www.heroku.com) `heroku` | ✔ | [docs](https://opensource.bloom.sh/rocket/heroku) |
+| [GitHub releases](https://help.github.com/categories/releases) `github_releases` | ✔ | [docs](https://code.bloom.sh/rocket/github_releases) |
+| [Heroku](https://www.heroku.com) `heroku` | ✔ | [docs](https://code.bloom.sh/rocket/heroku) |
 | [Netlify](https://www.netlify.com) `netlify` | 🚧 | - |
 | [NPM](https://www.npmjs.com) `npm` | 🕐 | - |
 | [SCP](https://en.wikipedia.org/wiki/Secure_copy) `scp` | 🕐 | - |
 | [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) `sftp` | 🕐 | - |
 | [SSH](https://en.wikipedia.org/wiki/Secure_Shell) `ssh` | 🕐 | - |
-| [ZEIT Now](https://zeit.co/now) `zeit_now` | ✔ | [docs](https://opensource.bloom.sh/rocket/zeit_now) |
+| [ZEIT Now](https://zeit.co/now) `zeit_now` | ✔ | [docs](https://code.bloom.sh/rocket/zeit_now) |
 
 ✔ = Done 🚧 = in progress 🕐 = planned
 
 
 
 
-
 ## Usage
 
-`rocket` use [SANE](https://opensource.bloom.sh/sane) as configuration format.
+`rocket` use [SANE](https://code.bloom.sh/sane) as configuration format.
 
 Go to your project's root directory then
 ```bash
@@ -134,7 +133,7 @@ Use "rocket [command] --help" for more information about a command.
 
 ## Documentation
 
-See [https://opensource.bloom.sh/rocket](https://opensource.bloom.sh/rocket)
+See [https://code.bloom.sh/rocket](https://code.bloom.sh/rocket)
 
 
 
