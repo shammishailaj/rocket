@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/bloom42/rocket/config"
-	"github.com/bloom42/astroflow-go/log"
+	"github.com/bloom42/astro-go/log"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"

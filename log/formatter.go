@@ -1,4 +1,4 @@
-package astroflow
+package astro
 
 import (
 	"bytes"
@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/bloom42/astroflow-go"
+	"github.com/bloom42/astro-go"
 	"github.com/json-iterator/go"
 )
 
@@ -33,14 +33,14 @@ type CLIFormatter struct {
 
 func NewCLIFormatter() CLIFormatter {
 	return CLIFormatter{
-		TimestampFieldName: astroflow.TimestampFieldName,
-		MessageFieldName:   astroflow.MessageFieldName,
-		LevelFieldName:     astroflow.LevelFieldName,
+		TimestampFieldName: astro.TimestampFieldName,
+		MessageFieldName:   astro.MessageFieldName,
+		LevelFieldName:     astro.LevelFieldName,
 		NoColor:            false,
 	}
 }
 
-func (formatter CLIFormatter) Format(event astroflow.Event) []byte {
+func (formatter CLIFormatter) Format(event astro.Event) []byte {
 	var ret = new(bytes.Buffer)
 
 	if t, ok := event[formatter.TimestampFieldName].(time.Time); ok {

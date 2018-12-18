@@ -13,8 +13,8 @@ import (
 	"github.com/bloom42/rocket/providers/heroku"
 	"github.com/bloom42/rocket/providers/script"
 	"github.com/bloom42/rocket/providers/zeitnow"
-	"github.com/bloom42/astroflow-go"
-	"github.com/bloom42/astroflow-go/log"
+	"github.com/bloom42/astro-go"
+	"github.com/bloom42/astro-go/log"
 	"github.com/spf13/cobra"
 )
 
@@ -35,7 +35,7 @@ var RocketCmd = &cobra.Command{
 		var err error
 
 		if debug {
-			log.Config(astroflow.SetLevel(astroflow.DebugLevel))
+			log.Config(astro.SetLevel(astro.DebugLevel))
 		}
 
 		// change working directory as the file's

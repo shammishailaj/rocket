@@ -13,7 +13,7 @@ import (
 
 	"github.com/bloom42/rocket/config"
 	"github.com/bloom42/rocket/version"
-	"github.com/bloom42/astroflow-go/log"
+	"github.com/bloom42/astro-go/log"
 	"github.com/z0mbie42/fswalk"
 )
 

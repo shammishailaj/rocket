@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/bloom42/rocket/config"
-	"github.com/bloom42/astroflow-go/log"
+	"github.com/bloom42/astro-go/log"
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
 )

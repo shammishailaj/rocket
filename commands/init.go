@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/bloom42/astroflow-go"
-	"github.com/bloom42/astroflow-go/log"
+	"github.com/bloom42/astro-go"
+	"github.com/bloom42/astro-go/log"
 	"github.com/bloom42/rocket/config"
 	"github.com/bloom42/sane-go"
 	"github.com/spf13/cobra"
@@ -28,7 +28,7 @@ var InitCmd = &cobra.Command{
 		var err error
 
 		if debug {
-			log.Config(astroflow.SetLevel(astroflow.DebugLevel))
+			log.Config(astro.SetLevel(astro.DebugLevel))
 		}
 
 		if configFile != "" && initForce == false {

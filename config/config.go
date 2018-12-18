@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/bloom42/astroflow-go/log"
+	"github.com/bloom42/astro-go/log"
 	"github.com/bloom42/sane-go"
 )
 
