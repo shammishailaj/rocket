@@ -19,6 +19,7 @@
 4. [Usage](#usage)
 5. [Documentation](#documentation)
 6. [Roadmap](#roadmap)
+7. [License](#license)
 
 -------------------
 
@@ -129,16 +130,18 @@ Use "rocket [command] --help" for more information about a command.
 ```
 
 
-
-
 ## Documentation
 
 See [https://code.bloom.sh/rocket](https://code.bloom.sh/rocket)
 
 
 
-
-
 ## Roadmap
 
 See [https://github.com/bloom42/rocket/projects/2](https://github.com/bloom42/rocket/projects/2)
+
+
+
+## License
+
+See `LICENSE.txt` and [https://code.bloom.sh/licensing](https://code.bloom.sh/licensing)
