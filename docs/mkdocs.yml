@@ -1,0 +1,33 @@
+docs_dir: pages
+
+theme:
+  name: null
+  custom_dir: '../../themes/mkdocs-material/material'
+  language: en
+  feature:
+  palette:
+    primary: indigo
+    accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: /favicon.ico
+  logo:
+    icon: "\uE80C"
+  base_url: '/rocket/'
+
+site_name: Rocket
+site_url: https://code.bloom.sh/rocket/
+repo_url: https://github.com/bloom42/rocket/
+edit_uri: https://github.com/bloom42/rocket/edit/master/docs/pages/
+site_dir: ../../../dist/rocket
+
+nav:
+  - index.md
+  - aws_eb.md
+  - aws_s3.md
+  - custom_script.md
+  - docker.md
+  - github_releases.md
+  - heroku.md
+  - zeit_now.md
