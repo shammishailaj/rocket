@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="rocket logo" src="https://code.bloom.sh/imgs/logos/rocket.png" height="180" />
+  <img alt="rocket logo" src="https://bloom.sh/imgs/logos/rocket.png" height="180" />
   <h3 align="center">Rocket</h3>
   <p align="center">Automated software delivery as fast and easy as possible</p>
 </p>
