@@ -18,8 +18,7 @@
 3. [Available providers](#available-providers)
 4. [Usage](#usage)
 5. [Documentation](#documentation)
-6. [Roadmap](#roadmap)
-7. [License](#license)
+6. [License](#license)
 
 -------------------
 
@@ -134,11 +133,6 @@ Use "rocket [command] --help" for more information about a command.
 
 See [https://code.bloom.sh/rocket](https://code.bloom.sh/rocket)
 
-
-
-## Roadmap
-
-See [https://github.com/bloom42/rocket/projects/2](https://github.com/bloom42/rocket/projects/2)
 
 
 
