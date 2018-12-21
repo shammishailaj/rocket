@@ -17,7 +17,7 @@ theme:
   base_url: '/rocket/'
 
 site_name: Rocket
-site_url: https://code.bloom.sh/rocket/
+site_url: https://opensource.bloom.sh/rocket/
 repo_url: https://github.com/bloom42/rocket/
 edit_uri: https://github.com/bloom42/rocket/edit/master/docs/pages/
 site_dir: ../../../dist/rocket
